@@ -73,6 +73,7 @@ dependencies {
     implementation(libs.hilt.android)
 
     implementation(libs.timber)
+    implementation(libs.splash.screen)
 
 }
 

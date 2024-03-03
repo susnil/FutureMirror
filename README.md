@@ -1,6 +1,9 @@
 # Future Mirror
+#### Smart Mirror App 
 
-
+## How to build
+` ./gradlew clean assembleDebug`
 
 ## Done
-- Install dependency injection(dagger)
+1. [x] Install dependency injection(dagger)
+2. [x] Splash screen with icon fade out effect

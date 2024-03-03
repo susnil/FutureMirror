@@ -20,6 +20,7 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var mySingleton: SimpleObject
     override fun onCreate(savedInstanceState: Bundle?) {
+        adaptSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
             FutureMirrorTheme {
