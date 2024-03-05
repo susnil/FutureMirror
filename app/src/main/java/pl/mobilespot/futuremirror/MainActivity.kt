@@ -1,5 +1,7 @@
 package pl.mobilespot.futuremirror
 
+import android.icu.text.DateFormat
+import android.icu.util.Calendar
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -29,7 +31,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    GetDate()
                 }
             }
         }
@@ -38,17 +40,16 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun GetDate() {
+    val calendar = Calendar.getInstance().time
+    val dataFormat = DateFormat.getDateInstance(DateFormat.FULL).format(calendar)
+    Text(dataFormat)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     FutureMirrorTheme {
-        Greeting("Android")
+        GetDate()
     }
 }
