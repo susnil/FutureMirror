@@ -11,7 +11,7 @@ class NameDaysDataSource @Inject constructor() : LocalDataSource {
     }
 
     override fun getNamesForDay(month: Int, day: Int): String {
-        return getNamesForMonth(month-1)[day-1]
+        return getNamesForMonth(month)[day - 1]
     }
 
     init {

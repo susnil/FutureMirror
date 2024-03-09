@@ -8,15 +8,19 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import pl.mobilespot.futuremirror.ui.theme.FutureMirrorTheme
 import pl.mobilespot.futuremirror.viewmodel.DashboardViewModel
 
 @Composable
 fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
+    val nameDay by viewModel.uiState.collectAsStateWithLifecycle()
+
     Row {
         GetDate()
         Button(onClick = { /*TODO*/ }) {
@@ -30,6 +34,7 @@ fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
                 Text(text = "${days[item]}", color = color)
             })
         }
+        Text(nameDay)
     }
 }
 
