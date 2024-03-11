@@ -2,16 +2,21 @@ package pl.mobilespot.futuremirror.screen
 
 import android.icu.text.DateFormat
 import android.icu.util.Calendar
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import pl.mobilespot.futuremirror.ui.theme.FutureMirrorTheme
@@ -22,19 +27,30 @@ fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
     val nameDay by viewModel.uiState.collectAsStateWithLifecycle()
 
     Row {
-        GetDate()
-        Button(onClick = { /*TODO*/ }) {
-            Text("Select day")
+        Column {
+            GetDate()
+            Text(nameDay)
         }
         val days = (1..Calendar.getInstance()
             .getActualMaximum(Calendar.DAY_OF_MONTH)).map { it }
-        LazyColumn(modifier = Modifier.fillMaxHeight()) {
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(minSize = 60.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
             items(days.count(), itemContent = { item ->
-                val color: Color = getColorForDay(days[item])
-                Text(text = "${days[item]}", color = color)
+                Card {
+                    Row(
+                        modifier = Modifier.padding(8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        val color: Color = getColorForDay(days[item])
+                        Text(text = "${days[item]}", color = color)
+                    }
+                }
             })
         }
-        Text(nameDay)
     }
 }
 
