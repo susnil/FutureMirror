@@ -17,6 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -41,19 +43,34 @@ fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small)
         ) {
             items(days.count(), itemContent = { item ->
-                Card {
-                    Row(
-                        modifier = Modifier.padding(MaterialTheme.padding.small),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
-                        val color: Color = getColorForDay(days[item])
-                        Text(text = "${days[item]}", color = color)
-                    }
-                }
+                DailyCard(days[item])
             })
         }
     }
+}
+
+@Composable
+private fun DailyCard(day: Int) {
+    Card {
+        Row(
+            modifier = Modifier.padding(MaterialTheme.padding.small),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            val color: Color = getColorForDay(day)
+            Text(text = "$day", color = color)
+        }
+    }
+}
+
+@Preview
+@Composable
+fun DailyCardPreview(@PreviewParameter(DayProvider::class) day: Int) {
+    DailyCard(day)
+}
+
+class DayProvider : PreviewParameterProvider<Int> {
+    override val values = sequenceOf(1, 31)
 }
 
 @Composable
