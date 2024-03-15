@@ -7,3 +7,12 @@
 ## Done
 1. [x] Install dependency injection(dagger)
 2. [x] Splash screen with icon fade out effect
+
+## Technology stack
+- [x] Kotlin
+- [x] Dagger Hilt 
+- [x] Jetpack Compose 
+- [x] Kotlin Flow 
+- [ ] Kotlin Coroutines
+- [x] Material Design 3
+- [ ] Retrofit
