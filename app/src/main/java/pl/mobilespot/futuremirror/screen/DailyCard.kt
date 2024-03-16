@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.dp
 import pl.mobilespot.futuremirror.ui.padding
 
 @Composable
-fun DailyCard(day: Int, isFutureDay: Boolean) {
-    Card {
+fun DailyCard(day: Int, isFutureDay: Boolean, modifier: Modifier = Modifier) {
+    Card(modifier) {
         Row(
             modifier = Modifier.padding(MaterialTheme.padding.small),
             verticalAlignment = Alignment.CenterVertically,

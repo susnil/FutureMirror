@@ -7,6 +7,9 @@
 ## Done
 1. [x] Install dependency injection(dagger)
 2. [x] Splash screen with icon fade out effect
+3. [x] Name days in Poland
+4. [x] Monthly agenda of name days
+5. [ ] Find name days
 
 ## Technology stack
 - [x] Kotlin

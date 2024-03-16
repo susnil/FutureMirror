@@ -12,15 +12,30 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
-    nameDaysRepository: NameDaysRepository
+    private val nameDaysRepository: NameDaysRepository
 ) : ViewModel() {
-    private val _uiState = MutableStateFlow("")
-    val uiState: StateFlow<String> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(DashboardState(""))
+    val uiState: StateFlow<DashboardState> = _uiState.asStateFlow()
 
     init {
         Timber.d("Init ViewModel")
-        val nameDays = nameDaysRepository.getNamesForDay()
-        _uiState.update { nameDays }
+        updateNameDay()
+    }
+
+    private fun updateNameDay() {
+        val nameDays = nameDaysRepository.getNamesForDay(uiState.value.selectedDay)
+        _uiState.update { uiState.value.copy(nameDay = nameDays) }
         Timber.d("Name days $nameDays")
     }
+
+    fun selectDay(day: Int) {
+        _uiState.update { uiState.value.copy(selectedDay = day) }
+        Timber.d("selectDay $day")
+        updateNameDay()
+    }
 }
+
+data class DashboardState(
+    val nameDay: String,
+    val selectedDay: Int? = null
+)

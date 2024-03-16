@@ -1,6 +1,7 @@
 package pl.mobilespot.futuremirror.screen
 
 import android.icu.util.Calendar
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -20,12 +22,12 @@ import pl.mobilespot.futuremirror.viewmodel.DashboardViewModel
 
 @Composable
 fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
-    val nameDay by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Row {
         Column {
             GetDate()
-            Text(nameDay)
+            Text(uiState.nameDay)
         }
         val days = (1..Calendar.getInstance()
             .getActualMaximum(Calendar.DAY_OF_MONTH)).map { it }
@@ -35,7 +37,10 @@ fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small)
         ) {
             items(days.count(), itemContent = { item ->
-                DailyCard(days[item], isFutureDay(days[item]))
+                DailyCard(
+                    days[item],
+                    isFutureDay(days[item]),
+                    Modifier.clickable { viewModel.selectDay(days[item]) })
             })
         }
     }
