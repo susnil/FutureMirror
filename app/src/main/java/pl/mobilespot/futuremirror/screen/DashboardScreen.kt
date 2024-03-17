@@ -11,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -18,19 +19,19 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import pl.mobilespot.futuremirror.ui.padding
 import pl.mobilespot.futuremirror.ui.theme.FutureMirrorTheme
+import pl.mobilespot.futuremirror.viewmodel.DashboardState
 import pl.mobilespot.futuremirror.viewmodel.DashboardViewModel
 
 @Composable
 fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    Row {
-        Column {
+    Column {
+        Row {
             GetDate()
             Text(uiState.nameDay)
         }
-        val days = (1..Calendar.getInstance()
-            .getActualMaximum(Calendar.DAY_OF_MONTH)).map { it }
+        val days = remember { getDaysOfMonth() }
         LazyVerticalGrid(
             columns = GridCells.Adaptive(minSize = 60.dp),
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small),
@@ -40,11 +41,21 @@ fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
                 DailyCard(
                     days[item],
                     isFutureDay(days[item]),
+                    isSelectedDay(uiState, days[item]),
                     Modifier.clickable { viewModel.selectDay(days[item]) })
             })
         }
     }
 }
+
+private fun getDaysOfMonth() = (1..Calendar.getInstance()
+    .getActualMaximum(Calendar.DAY_OF_MONTH)).map { it }
+
+@Composable
+private fun isSelectedDay(
+    uiState: DashboardState,
+    day: Int
+) = uiState.selectedDay == day
 
 @Preview(showBackground = true)
 @Composable

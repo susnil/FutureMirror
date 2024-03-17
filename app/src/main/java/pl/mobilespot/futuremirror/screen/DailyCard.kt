@@ -1,11 +1,13 @@
 package pl.mobilespot.futuremirror.screen
 
+import android.annotation.SuppressLint
 import android.icu.text.DateFormat
 import android.icu.util.Calendar
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,8 +21,16 @@ import androidx.compose.ui.unit.dp
 import pl.mobilespot.futuremirror.ui.padding
 
 @Composable
-fun DailyCard(day: Int, isFutureDay: Boolean, modifier: Modifier = Modifier) {
-    Card(modifier) {
+fun DailyCard(
+    day: Int,
+    isFutureDay: Boolean,
+    isSelectedDay: Boolean = false,
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier
+) {
+    Card(
+        modifier,
+        colors = CardDefaults.cardColors(containerColor = (if (isSelectedDay) Color.Magenta else Color.Unspecified))
+    ) {
         Row(
             modifier = Modifier.padding(MaterialTheme.padding.small),
             verticalAlignment = Alignment.CenterVertically,
@@ -56,8 +66,7 @@ fun GetDate() {
 
 fun isFutureDay(
     day: Int
-) = day > Calendar.getInstance()
-    .get(Calendar.DAY_OF_MONTH)
+) = day > Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
 
 fun getColorForFutureDay(isFutureDay: Boolean) = if (isFutureDay) {
     Color.Gray
