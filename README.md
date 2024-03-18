@@ -10,6 +10,8 @@
 3. [x] Name days in Poland
 4. [x] Monthly agenda of name days
 5. [ ] Find name days
+6. [ ] Find news/weather api
+
 
 ## Technology stack
 - [x] Kotlin
