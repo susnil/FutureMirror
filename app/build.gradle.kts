@@ -70,6 +70,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.lifecycle.runtimeCompose)
+    implementation(libs.androidx.compose.material.iconsExtended)
 
     kapt(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
