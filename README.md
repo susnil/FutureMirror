@@ -12,6 +12,7 @@
 5. [ ] Find name days
 6. [ ] Find news/weather api
 7. [ ] Check how PagingData is working
+8. [ ] Add tests
 
 
 ## Technology stack
