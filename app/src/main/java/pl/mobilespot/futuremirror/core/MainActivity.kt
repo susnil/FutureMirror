@@ -1,4 +1,4 @@
-package pl.mobilespot.futuremirror
+package pl.mobilespot.futuremirror.core
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,8 +10,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
-import pl.mobilespot.futuremirror.screen.DashboardScreen
-import pl.mobilespot.futuremirror.ui.theme.FutureMirrorTheme
+import pl.mobilespot.futuremirror.presentation.dashboard.DashboardScreen
+import pl.mobilespot.futuremirror.designsystem.ui.theme.FutureMirrorTheme
 import javax.inject.Inject
 
 @AndroidEntryPoint

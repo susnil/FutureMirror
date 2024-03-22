@@ -1,4 +1,4 @@
-package pl.mobilespot.futuremirror.ui
+package pl.mobilespot.futuremirror.designsystem.ui
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Tag

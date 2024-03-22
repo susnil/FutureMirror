@@ -1,4 +1,4 @@
-package pl.mobilespot.futuremirror.ui
+package pl.mobilespot.futuremirror.designsystem.ui
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable

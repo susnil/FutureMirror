@@ -1,4 +1,4 @@
-package pl.mobilespot.futuremirror.viewmodel
+package pl.mobilespot.futuremirror.presentation.dashboard
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

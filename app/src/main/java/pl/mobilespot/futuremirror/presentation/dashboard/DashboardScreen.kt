@@ -1,4 +1,4 @@
-package pl.mobilespot.futuremirror.screen
+package pl.mobilespot.futuremirror.presentation.dashboard
 
 import android.icu.util.Calendar
 import androidx.compose.foundation.clickable
@@ -17,10 +17,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import pl.mobilespot.futuremirror.ui.padding
-import pl.mobilespot.futuremirror.ui.theme.FutureMirrorTheme
-import pl.mobilespot.futuremirror.viewmodel.DashboardState
-import pl.mobilespot.futuremirror.viewmodel.DashboardViewModel
+import pl.mobilespot.futuremirror.designsystem.ui.padding
+import pl.mobilespot.futuremirror.designsystem.ui.theme.FutureMirrorTheme
+import pl.mobilespot.futuremirror.presentation.DailyCard
+import pl.mobilespot.futuremirror.presentation.GetDate
+import pl.mobilespot.futuremirror.presentation.isFutureDay
 
 @Composable
 fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {

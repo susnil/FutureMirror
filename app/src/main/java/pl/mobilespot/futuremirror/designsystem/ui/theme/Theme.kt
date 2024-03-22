@@ -1,4 +1,4 @@
-package pl.mobilespot.futuremirror.ui.theme
+package pl.mobilespot.futuremirror.designsystem.ui.theme
 
 import android.app.Activity
 import android.os.Build

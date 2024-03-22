@@ -1,4 +1,4 @@
-package pl.mobilespot.futuremirror.screen
+package pl.mobilespot.futuremirror.presentation
 
 import android.annotation.SuppressLint
 import android.icu.text.DateFormat
@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import pl.mobilespot.futuremirror.ui.padding
+import pl.mobilespot.futuremirror.designsystem.ui.padding
 
 @Composable
 fun DailyCard(

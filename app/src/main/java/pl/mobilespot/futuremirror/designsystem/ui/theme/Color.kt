@@ -1,4 +1,4 @@
-package pl.mobilespot.futuremirror.ui.theme
+package pl.mobilespot.futuremirror.designsystem.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

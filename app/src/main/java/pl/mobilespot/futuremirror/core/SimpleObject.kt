@@ -1,4 +1,4 @@
-package pl.mobilespot.futuremirror
+package pl.mobilespot.futuremirror.core
 
 import javax.inject.Inject
 

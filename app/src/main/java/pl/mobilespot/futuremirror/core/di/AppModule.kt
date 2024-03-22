@@ -1,4 +1,4 @@
-package pl.mobilespot.futuremirror.di
+package pl.mobilespot.futuremirror.core.di
 
 import dagger.Binds
 import dagger.Module

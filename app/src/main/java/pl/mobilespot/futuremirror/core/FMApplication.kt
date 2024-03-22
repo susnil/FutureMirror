@@ -1,7 +1,8 @@
-package pl.mobilespot.futuremirror
+package pl.mobilespot.futuremirror.core
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
+import pl.mobilespot.futuremirror.BuildConfig
 import timber.log.Timber
 
 @HiltAndroidApp
