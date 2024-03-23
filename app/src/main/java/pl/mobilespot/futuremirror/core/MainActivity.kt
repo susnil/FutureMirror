@@ -10,8 +10,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
-import pl.mobilespot.futuremirror.presentation.dashboard.DashboardScreen
 import pl.mobilespot.futuremirror.designsystem.ui.theme.FutureMirrorTheme
+import pl.mobilespot.futuremirror.presentation.navigation.NavGraph
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                             .padding(innerPadding),
                         contentAlignment = Alignment.Center
                     ) {
-                        DashboardScreen()
+                        NavGraph()
                     }
                 }
             }
