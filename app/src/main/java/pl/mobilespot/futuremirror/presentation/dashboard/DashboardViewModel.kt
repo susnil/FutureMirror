@@ -1,41 +1,40 @@
 package pl.mobilespot.futuremirror.presentation.dashboard
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 import pl.mobilespot.futuremirror.namedays.NameDaysRepository
 import timber.log.Timber
 import javax.inject.Inject
 
+
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
-    private val nameDaysRepository: NameDaysRepository
+    private val nameDaysRepository: NameDaysRepository,
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    private val _uiState = MutableStateFlow(DashboardState(""))
-    val uiState: StateFlow<DashboardState> = _uiState.asStateFlow()
+    companion object {
+        const val UI_STATE = "dashboard_ui_state"
+    }
+
+    val uiState = savedStateHandle.getStateFlow(UI_STATE, DashboardState.raw)
 
     init {
-        Timber.d("Init ViewModel")
+        val stateUi: DashboardState? = savedStateHandle[UI_STATE]
+
+        Timber.d("Init ViewModel, StateUi: $stateUi")
         updateNameDay()
     }
 
     private fun updateNameDay() {
         val nameDays = nameDaysRepository.getNamesForDay(uiState.value.selectedDay)
-        _uiState.update { uiState.value.copy(nameDay = nameDays) }
+        savedStateHandle[UI_STATE] = uiState.value.copy(nameDay = nameDays)
         Timber.d("Name days $nameDays")
     }
 
     fun selectDay(day: Int) {
-        _uiState.update { uiState.value.copy(selectedDay = day) }
+        savedStateHandle[UI_STATE] = uiState.value.copy(selectedDay = day)
         Timber.d("selectDay $day")
         updateNameDay()
     }
 }
-
-data class DashboardState(
-    val nameDay: String,
-    val selectedDay: Int? = null
-)
