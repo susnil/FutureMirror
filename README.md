@@ -12,7 +12,8 @@
 5. [ ] Find name days
 6. [ ] Find news/weather api
 7. [ ] Check how PagingData is working
-8. [ ] Add tests
+8. [ ] Add junit tests for use cases, viewmodel tests
+9. [ ] Add draggable element
 
 
 ## Technology stack
