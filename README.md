@@ -14,6 +14,7 @@
 7. [ ] Check how PagingData is working
 8. [ ] Add junit tests for use cases, viewmodel tests
 9. [ ] Add draggable element
+10. [ ] Dashboard personalization
 
 
 ## Technology stack
