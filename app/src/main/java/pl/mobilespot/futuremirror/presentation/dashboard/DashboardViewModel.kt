@@ -3,10 +3,11 @@ package pl.mobilespot.futuremirror.presentation.dashboard
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import pl.mobilespot.futuremirror.namedays.DayMonth
 import pl.mobilespot.futuremirror.namedays.NameDaysRepository
 import timber.log.Timber
 import javax.inject.Inject
-
+import java.time.LocalDate
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
@@ -27,7 +28,9 @@ class DashboardViewModel @Inject constructor(
     }
 
     private fun updateNameDay() {
-        val nameDays = nameDaysRepository.getNamesForDay(uiState.value.selectedDay)
+        val localDate = LocalDate.now()
+        val dayMonth = DayMonth(uiState.value.selectedDay ?: localDate.dayOfMonth, localDate.monthValue)
+        val nameDays = nameDaysRepository.getNamesForDay(dayMonth)
         savedStateHandle[UI_STATE] = uiState.value.copy(nameDay = nameDays)
         Timber.d("Name days $nameDays")
     }
@@ -38,3 +41,4 @@ class DashboardViewModel @Inject constructor(
         updateNameDay()
     }
 }
+
