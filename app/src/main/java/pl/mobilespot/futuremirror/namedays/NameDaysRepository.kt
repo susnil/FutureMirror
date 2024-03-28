@@ -8,12 +8,12 @@ import javax.inject.Singleton
 class NameDaysRepository @Inject constructor(private val localDataSource: LocalDataSource) :
     Repository {
 
-    override fun getNamesForDay(dayMonth: DayMonth): String {
-        Timber.d("Month: ${dayMonth.month + 1}, day: ${dayMonth.day}")
+    override fun getNamesForDay(dayMonth: DayMonth): List<String> {
+        Timber.d("Month: ${dayMonth.month}, day: ${dayMonth.day}")
         return localDataSource.getNamesForDay(dayMonth)
     }
 }
 
 interface Repository {
-    fun getNamesForDay(dayMonth: DayMonth): String
+    fun getNamesForDay(dayMonth: DayMonth): List<String>
 }

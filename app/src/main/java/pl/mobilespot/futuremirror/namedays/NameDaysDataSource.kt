@@ -10,10 +10,10 @@ class NameDaysDataSource @Inject constructor() : LocalDataSource {
         return nameday["pl"]?.get(month) ?: emptyArray()
     }
 
-    override fun getNamesForDay(dayMonth: DayMonth): String {
-        val month = dayMonth.month
-        val day = dayMonth.day
-        return getNamesForMonth(month)[day - 1]
+    override fun getNamesForDay(dayMonth: DayMonth): List<String> {
+        val month = dayMonth.month - 1
+        val day = dayMonth.day - 1
+        return getNamesForMonth(month)[day].split(",")
     }
 
     init {
@@ -413,5 +413,5 @@ class NameDaysDataSource @Inject constructor() : LocalDataSource {
 }
 
 interface LocalDataSource {
-    fun getNamesForDay(dayMonth: DayMonth): String
+    fun getNamesForDay(dayMonth: DayMonth): List<String>
 }

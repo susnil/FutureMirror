@@ -31,7 +31,7 @@ class DashboardViewModel @Inject constructor(
         val localDate = LocalDate.now()
         val dayMonth = DayMonth(uiState.value.selectedDay ?: localDate.dayOfMonth, localDate.monthValue)
         val nameDays = nameDaysRepository.getNamesForDay(dayMonth)
-        savedStateHandle[UI_STATE] = uiState.value.copy(nameDay = nameDays)
+        savedStateHandle[UI_STATE] = uiState.value.copy(namesDay = nameDays)
         Timber.d("Name days $nameDays")
     }
 

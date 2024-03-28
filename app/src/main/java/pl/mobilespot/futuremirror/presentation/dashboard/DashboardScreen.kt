@@ -30,7 +30,9 @@ fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
     Column {
         Row {
             GetDate()
-            Text(uiState.nameDay)
+            Column {
+                uiState.namesDay.forEach { name -> Text(name) }
+            }
         }
         val days = remember { getDaysOfMonth() }
         LazyVerticalGrid(

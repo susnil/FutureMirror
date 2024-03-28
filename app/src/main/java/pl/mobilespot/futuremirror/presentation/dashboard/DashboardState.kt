@@ -5,10 +5,10 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DashboardState(
-    val nameDay: String,
+    val namesDay: List<String>,
     val selectedDay: Int? = null
 ) : Parcelable {
     companion object {
-        val raw = DashboardState("")
+        val raw = DashboardState(emptyList())
     }
 }
