@@ -9,6 +9,8 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.8.2"
 composeBom = "2024.02.01"
+mockkAgent = "1.13.10"
+mockkAndroid = "1.13.10"
 timber = "5.0.1"
 androidxHiltNavigationCompose = "1.2.0"
 androidxLifecycle = "2.7.0"
@@ -34,6 +36,8 @@ androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "life
 
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
+mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockkAgent" }
+mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockkAndroid" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 splash-screen = "androidx.core:core-splashscreen:1.0.1"
 
