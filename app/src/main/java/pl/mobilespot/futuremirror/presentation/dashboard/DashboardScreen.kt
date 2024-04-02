@@ -10,13 +10,10 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import pl.mobilespot.futuremirror.designsystem.ui.padding
 import pl.mobilespot.futuremirror.designsystem.ui.theme.FutureMirrorTheme
 import pl.mobilespot.futuremirror.presentation.DailyCard
@@ -24,8 +21,8 @@ import pl.mobilespot.futuremirror.presentation.GetDate
 import pl.mobilespot.futuremirror.presentation.isFutureDay
 
 @Composable
-fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+fun DashboardScreen(uiState: DashboardState) {
+
 
     Column {
         Row {
@@ -45,7 +42,7 @@ fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
                     days[item],
                     isFutureDay(days[item]),
                     isSelectedDay(uiState, days[item]),
-                    Modifier.clickable { viewModel.selectDay(days[item]) })
+                    Modifier.clickable { })
             })
         }
     }
@@ -64,6 +61,6 @@ private fun isSelectedDay(
 @Composable
 private fun DashboardScreenPreview() {
     FutureMirrorTheme {
-        DashboardScreen()
+        DashboardScreen(DashboardState.raw)
     }
 }

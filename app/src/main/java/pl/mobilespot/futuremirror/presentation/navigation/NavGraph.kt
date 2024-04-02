@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import pl.mobilespot.futuremirror.presentation.dashboard.DashboardScreen
+import pl.mobilespot.futuremirror.presentation.dashboard.DashboardRoute
 import pl.mobilespot.futuremirror.presentation.days.DayDetailsScreen
 import pl.mobilespot.futuremirror.presentation.news.NewsScreen
 import pl.mobilespot.futuremirror.presentation.search.SearchScreen
@@ -15,7 +15,7 @@ fun NavGraph() {
 
     NavHost(navController = navController, startDestination = Route.DashboardScreen.route) {
         composable(route = Route.DashboardScreen.route) { backStackEntry ->
-            DashboardScreen()
+            DashboardRoute()
         }
         composable(route = Route.SearchScreen.route) { backStackEntry ->
             SearchScreen()
