@@ -1,4 +1,4 @@
-package pl.mobilespot.futuremirror
+package pl.mobilespot.futuremirror.presentation.dashboard
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -6,10 +6,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import org.junit.Rule
 import org.junit.Test
-import pl.mobilespot.futuremirror.presentation.dashboard.DashboardScreen
-import pl.mobilespot.futuremirror.presentation.dashboard.DashboardState
 
-class MyComposeTest {
+class DashboardScreenTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()
