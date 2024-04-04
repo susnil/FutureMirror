@@ -15,7 +15,7 @@ class DashboardScreenTest {
     @Test
     fun myTest() {
         composeTestRule.setContent {
-            DashboardScreen(DashboardState.raw)
+            DashboardScreen(DashboardState.raw) {}
         }
 
         composeTestRule.onNodeWithText("1").performClick()

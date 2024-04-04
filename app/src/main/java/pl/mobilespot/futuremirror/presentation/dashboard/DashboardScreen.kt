@@ -21,8 +21,7 @@ import pl.mobilespot.futuremirror.presentation.GetDate
 import pl.mobilespot.futuremirror.presentation.isFutureDay
 
 @Composable
-fun DashboardScreen(uiState: DashboardState) {
-
+fun DashboardScreen(uiState: DashboardState, selectDay: (Int) -> Unit) {
 
     Column {
         Row {
@@ -42,7 +41,7 @@ fun DashboardScreen(uiState: DashboardState) {
                     days[item],
                     isFutureDay(days[item]),
                     isSelectedDay(uiState, days[item]),
-                    Modifier.clickable { })
+                    Modifier.clickable { selectDay(days[item]) })
             })
         }
     }
@@ -61,6 +60,6 @@ private fun isSelectedDay(
 @Composable
 private fun DashboardScreenPreview() {
     FutureMirrorTheme {
-        DashboardScreen(DashboardState.raw)
+        DashboardScreen(DashboardState.raw) {}
     }
 }
