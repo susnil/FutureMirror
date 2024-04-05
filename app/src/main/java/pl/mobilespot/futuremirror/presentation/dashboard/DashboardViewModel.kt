@@ -6,8 +6,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import pl.mobilespot.futuremirror.namedays.DayMonth
 import pl.mobilespot.futuremirror.namedays.NameDaysRepository
 import timber.log.Timber
-import javax.inject.Inject
 import java.time.LocalDate
+import javax.inject.Inject
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
@@ -29,7 +29,8 @@ class DashboardViewModel @Inject constructor(
 
     private fun updateNameDay() {
         val localDate = LocalDate.now()
-        val dayMonth = DayMonth(uiState.value.selectedDay ?: localDate.dayOfMonth, localDate.monthValue)
+        val dayMonth =
+            DayMonth(uiState.value.selectedDay ?: localDate.dayOfMonth, localDate.monthValue)
         val nameDays = nameDaysRepository.getNamesForDay(dayMonth)
         savedStateHandle[UI_STATE] = uiState.value.copy(namesDay = nameDays)
         Timber.d("Name days $nameDays")
@@ -37,7 +38,13 @@ class DashboardViewModel @Inject constructor(
 
     fun selectDay(day: Int) {
         savedStateHandle[UI_STATE] = uiState.value.copy(selectedDay = day)
-        Timber.d("selectDay $day")
+        Timber.d("select day: $day")
+        updateNameDay()
+    }
+
+    fun unselect() {
+        savedStateHandle[UI_STATE] = uiState.value.copy(selectedDay = null)
+        Timber.d("Unselect day")
         updateNameDay()
     }
 }

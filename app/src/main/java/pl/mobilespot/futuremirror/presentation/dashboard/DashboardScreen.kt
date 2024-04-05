@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,7 +22,7 @@ import pl.mobilespot.futuremirror.presentation.GetDate
 import pl.mobilespot.futuremirror.presentation.isFutureDay
 
 @Composable
-fun DashboardScreen(uiState: DashboardState, selectDay: (Int) -> Unit) {
+fun DashboardScreen(uiState: DashboardState, selectDay: (Int) -> Unit, unselected: () -> Unit) {
 
     Column {
         Row {
@@ -44,6 +45,11 @@ fun DashboardScreen(uiState: DashboardState, selectDay: (Int) -> Unit) {
                     Modifier.clickable { selectDay(days[item]) })
             })
         }
+        uiState.selectedDay?.let {
+            Button(onClick = { unselected() }) {
+                Text(text = "Unselect")
+            }
+        }
     }
 }
 
@@ -60,6 +66,6 @@ private fun isSelectedDay(
 @Composable
 private fun DashboardScreenPreview() {
     FutureMirrorTheme {
-        DashboardScreen(DashboardState.raw) {}
+        DashboardScreen(DashboardState.raw, {}, {})
     }
 }
