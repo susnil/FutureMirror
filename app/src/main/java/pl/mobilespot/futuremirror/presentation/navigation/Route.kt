@@ -13,4 +13,6 @@ sealed class Route(
     object DayDetailsScreen : Route(route = "detailsScreen")
 
     object NewsScreen : Route(route = "newsNavigator")
+
+    object Settings : Route(route = "settings")
 }

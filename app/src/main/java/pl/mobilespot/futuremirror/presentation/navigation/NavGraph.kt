@@ -8,6 +8,7 @@ import pl.mobilespot.futuremirror.presentation.dashboard.DashboardRoute
 import pl.mobilespot.futuremirror.presentation.days.DayDetailsScreen
 import pl.mobilespot.futuremirror.presentation.news.NewsScreen
 import pl.mobilespot.futuremirror.presentation.search.SearchScreen
+import pl.mobilespot.futuremirror.presentation.settings.SettingsScreen
 
 @Composable
 fun NavGraph() {
@@ -25,6 +26,9 @@ fun NavGraph() {
         }
         composable(route = Route.NewsScreen.route) { backStackEntry ->
             NewsScreen()
+        }
+        composable(route = Route.Settings.route) { backStackEntry ->
+            SettingsScreen()
         }
     }
 }
