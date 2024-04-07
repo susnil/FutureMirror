@@ -34,7 +34,7 @@ fun DailyCard(
         Row(
             modifier = Modifier.padding(MaterialTheme.padding.small),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.medium)
         ) {
             Text(text = "$day", color = getColorForFutureDay(isFutureDay))
         }
