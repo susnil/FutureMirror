@@ -44,7 +44,7 @@ fun SettingsScreen(state: Boolean, toggleSwitch: () -> Unit = {}) {
             ) {
 
             }
-            SettingsSwitchComp(
+            SettingsSwitchComponent(
                 name = R.string.title,
                 icon = R.drawable.ic_icon,
                 iconDesc = R.string.icon_description,

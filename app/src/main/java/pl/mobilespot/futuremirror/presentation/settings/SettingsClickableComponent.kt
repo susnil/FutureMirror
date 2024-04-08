@@ -25,7 +25,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import pl.mobilespot.futuremirror.R
 import pl.mobilespot.futuremirror.designsystem.ui.padding
 
 @Composable
@@ -79,3 +81,13 @@ fun SettingsClickableComponent(
     }
 }
 
+@Preview
+@Composable
+fun SettingsClickableComponentPreview() {
+    SettingsClickableComponent(
+        name = R.string.title,
+        icon = R.drawable.ic_icon,
+        iconDesc = R.string.icon_description,
+        onClick = {}
+    )
+}

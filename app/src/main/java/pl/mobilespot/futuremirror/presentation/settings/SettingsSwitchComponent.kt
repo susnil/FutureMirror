@@ -23,11 +23,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import pl.mobilespot.futuremirror.R
 import pl.mobilespot.futuremirror.designsystem.ui.padding
 
 @Composable
-fun SettingsSwitchComp(
+fun SettingsSwitchComponent(
     @DrawableRes icon: Int,
     @StringRes iconDesc: Int,
     @StringRes name: Int,
@@ -69,4 +71,16 @@ fun SettingsSwitchComp(
             HorizontalDivider()
         }
     }
+}
+
+@Preview
+@Composable
+fun SettingsSwitchComponentPreview() {
+    SettingsSwitchComponent(
+        name = R.string.title,
+        icon = R.drawable.ic_icon,
+        iconDesc = R.string.icon_description,
+        state = false,
+        onClick = {}
+    )
 }
