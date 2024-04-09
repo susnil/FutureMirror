@@ -10,11 +10,18 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor() : ViewModel() {
 
 
-    private val _isSwitchOn: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    var isSwitchOn = _isSwitchOn.asStateFlow()
+    private val _uiState: MutableStateFlow<SettingsState> = MutableStateFlow(SettingsState.raw)
+    var uiState = _uiState.asStateFlow()
 
     fun toggleSwitch() {
-        _isSwitchOn.value = _isSwitchOn.value.not()
-        // here is place for permanent storage handling - switch
+        _uiState.value = uiState.value.copy(uiState.value.boolean.not())
+    }
+
+
+}
+
+data class SettingsState(val boolean: Boolean, val text: String) {
+    companion object {
+        val raw = SettingsState(false, "")
     }
 }

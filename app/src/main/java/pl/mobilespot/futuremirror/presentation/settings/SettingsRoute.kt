@@ -7,6 +7,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun SettingsRoute(viewModel: SettingsViewModel = hiltViewModel()) {
-    val switch by viewModel.isSwitchOn.collectAsState()
-    SettingsScreen(switch) { viewModel.toggleSwitch() }
+    val uiState by viewModel.uiState.collectAsState()
+    val switch by viewModel.uiState.collectAsState()
+    SettingsScreen(uiState) { viewModel.toggleSwitch() }
 }

@@ -18,7 +18,7 @@ import pl.mobilespot.futuremirror.designsystem.ui.padding
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(state: Boolean, toggleSwitch: () -> Unit = {}) {
+fun SettingsScreen(state: SettingsState, toggleSwitch: () -> Unit = {}) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -48,10 +48,18 @@ fun SettingsScreen(state: Boolean, toggleSwitch: () -> Unit = {}) {
                 name = R.string.title,
                 icon = R.drawable.ic_icon,
                 iconDesc = R.string.icon_description,
-                state = state
+                state = state.boolean
             ) {
                 toggleSwitch()
             }
+
+            SettingsTextComponent(
+                name = R.string.title,
+                icon = R.drawable.ic_icon,
+                iconDesc = R.string.icon_description,
+                state = state.text,
+                onSave = {}, onCheck = { _ -> true },
+            )
 
         }
 
@@ -63,5 +71,5 @@ fun SettingsScreen(state: Boolean, toggleSwitch: () -> Unit = {}) {
 @Preview
 @Composable
 fun SettingsScreenPreview() {
-    SettingsScreen(false)
+    SettingsScreen(SettingsState.raw)
 }
