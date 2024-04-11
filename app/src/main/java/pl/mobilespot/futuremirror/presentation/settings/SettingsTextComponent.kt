@@ -28,6 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import pl.mobilespot.futuremirror.designsystem.ui.padding
 
 @Composable
 fun SettingsTextComponent(
@@ -56,7 +57,7 @@ fun SettingsTextComponent(
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(MaterialTheme.padding.medium),
         onClick = {
             isDialogShown = true
         },
@@ -71,14 +72,14 @@ fun SettingsTextComponent(
                     contentDescription = stringResource(id = iconDesc),
                     modifier = Modifier.size(24.dp)
                 )
-                Spacer(modifier = Modifier.width(16.dp))
-                Column(modifier = Modifier.padding(8.dp)) {
+                Spacer(modifier = Modifier.width(MaterialTheme.padding.medium))
+                Column(modifier = Modifier.padding(MaterialTheme.padding.small)) {
                     Text(
                         text = stringResource(id = name),
                         style = MaterialTheme.typography.bodyMedium,
                         textAlign = TextAlign.Start,
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(MaterialTheme.padding.small))
                     Text(
                         text = state,
                         style = MaterialTheme.typography.bodySmall,

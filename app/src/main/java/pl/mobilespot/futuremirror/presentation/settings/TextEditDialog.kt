@@ -23,6 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import pl.mobilespot.futuremirror.R
+import pl.mobilespot.futuremirror.designsystem.ui.padding
 
 @Composable
 fun TextEditDialog(
@@ -49,10 +50,10 @@ fun TextEditDialog(
             modifier = Modifier
                 .wrapContentHeight()
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(MaterialTheme.padding.medium)
         ) {
             Text(stringResource(id = name))
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(MaterialTheme.padding.small))
             TextField(currentInput, onValueChange = {
                 isValid = onCheck(it.text)
                 currentInput = it
