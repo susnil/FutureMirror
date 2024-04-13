@@ -21,4 +21,17 @@ class NameDaysRepositoryTest {
 
         assertEquals(expectedNames, actualNames)
     }
+
+    @Test
+    fun getMonthDaysForName() {
+        val localDataStore = NameDaysDataSource()
+
+        val repository = NameDaysRepository(localDataStore)
+        val expectedDayMonths = listOf(DayMonth(1, 2), DayMonth(3, 4))
+        val name = "Jana"
+
+        val actualDayMonths = repository.getDaysForName(name)
+
+        assertEquals(expectedDayMonths, actualDayMonths)
+    }
 }

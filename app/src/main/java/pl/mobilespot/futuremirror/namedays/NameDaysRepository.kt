@@ -12,8 +12,13 @@ class NameDaysRepository @Inject constructor(private val localDataSource: LocalD
         Timber.d("Month: ${dayMonth.month}, day: ${dayMonth.day}")
         return localDataSource.getNamesForDay(dayMonth)
     }
+
+    override fun getDaysForName(name: String): List<DayMonth> {
+        return localDataSource.getDaysForName(name)
+    }
 }
 
 interface Repository {
     fun getNamesForDay(dayMonth: DayMonth): List<String>
+    fun getDaysForName(name: String): List<DayMonth>
 }

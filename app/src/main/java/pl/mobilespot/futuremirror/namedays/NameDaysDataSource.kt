@@ -16,6 +16,10 @@ class NameDaysDataSource @Inject constructor() : LocalDataSource {
         return getNamesForMonth(month)[day].split(",")
     }
 
+    override fun getDaysForName(name: String): List<DayMonth> {
+        return listOf(DayMonth(1, 2), DayMonth(3, 4))
+    }
+
     init {
         nameday["pl"] = arrayOf(
             arrayOf(
@@ -414,4 +418,5 @@ class NameDaysDataSource @Inject constructor() : LocalDataSource {
 
 interface LocalDataSource {
     fun getNamesForDay(dayMonth: DayMonth): List<String>
+    fun getDaysForName(name: String): List<DayMonth>
 }
