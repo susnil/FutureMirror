@@ -14,6 +14,7 @@ mockkAndroid = "1.13.10"
 timber = "5.0.1"
 androidxHiltNavigationCompose = "1.2.0"
 androidxLifecycle = "2.7.0"
+roomRuntime = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -40,6 +41,10 @@ mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockkAgent" }
 mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockkAndroid" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 splash-screen = "androidx.core:core-splashscreen:1.0.1"
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
