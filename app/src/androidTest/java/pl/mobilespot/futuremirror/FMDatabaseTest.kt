@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -31,8 +32,7 @@ class FMDatabaseTest {
     }
 
     @Test
-    fun testInitialDataInsertion() {
-
+    fun testInitialDataInsertion() = runTest {
         val initialData = NameDay("Bogdan")
         dao.insert(initialData)
 
