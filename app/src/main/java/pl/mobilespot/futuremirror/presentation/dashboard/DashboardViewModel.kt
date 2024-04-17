@@ -2,11 +2,8 @@ package pl.mobilespot.futuremirror.presentation.dashboard
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import pl.mobilespot.futuremirror.namedays.DayMonth
-import pl.mobilespot.futuremirror.namedays.GetSavedNameDays
 import pl.mobilespot.futuremirror.namedays.NameDaysRepository
 import timber.log.Timber
 import java.time.LocalDate
@@ -15,8 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
     private val nameDaysRepository: NameDaysRepository,
-    private val savedStateHandle: SavedStateHandle,
-    private val getSavedNameDays: GetSavedNameDays
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     companion object {
         const val UI_STATE = "dashboard_ui_state"
@@ -29,11 +25,6 @@ class DashboardViewModel @Inject constructor(
 
         Timber.d("Init ViewModel, StateUi: $stateUi")
         updateNameDay()
-        viewModelScope.launch {
-            getSavedNameDays.invoke().also {
-                Timber.d("Loaded: ${it.count()} name days: $it")
-            }
-        }
     }
 
     private fun updateNameDay() {

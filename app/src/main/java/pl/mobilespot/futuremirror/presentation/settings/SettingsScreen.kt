@@ -60,7 +60,7 @@ fun SettingsScreen(state: SettingsState, toggleSwitch: () -> Unit = {}) {
                 state = state.text,
                 onSave = {}, onCheck = { _ -> true },
             )
-
+            Text(text = "Name day count: ${state.nameDayCount}")
         }
 
 
