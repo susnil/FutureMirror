@@ -1,8 +1,10 @@
 package pl.mobilespot.futuremirror.presentation.dashboard
 
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.rules.ActivityScenarioRule
@@ -12,6 +14,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import pl.mobilespot.futuremirror.core.MainActivity
+import pl.mobilespot.futuremirror.testing.CommonTags.NAMES_COUNTER
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
@@ -20,6 +23,7 @@ class IntegrationTest {
     val activityRule = createAndroidComposeRule<MainActivity>()
 
     private val unselect = "Unselect"
+    private val settings = "Settings"
     private val day = "1"
 
     @Test
@@ -43,4 +47,13 @@ class IntegrationTest {
     private fun AndroidComposeTestRule<ActivityScenarioRule<MainActivity>, MainActivity>.selectDay() =
         onNodeWithText(day).performClick()
 
+    @Test
+    fun `click settings should show names counter`() {
+        activityRule.apply {
+            onNodeWithText(settings).performClick()
+            onNodeWithText(unselect).assertDoesNotExist()
+
+            onNodeWithTag(NAMES_COUNTER).assertTextEquals("2")
+        }
+    }
 }

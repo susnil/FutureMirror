@@ -3,6 +3,7 @@ package pl.mobilespot.futuremirror.data
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 import pl.mobilespot.futuremirror.namedays.NameDay
 
 @Dao
@@ -13,5 +14,8 @@ interface NameDayDao {
 
     @Query("SELECT * FROM NameDay ORDER BY id DESC")
     suspend fun getDayName(): List<NameDay>
+
+    @Query("SELECT count() FROM NameDay")
+    fun getDayNameCountFlow(): Flow<Int>
 }
 
