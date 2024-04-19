@@ -34,3 +34,4 @@
 - [x] [Mockk](https://mockk.io/) This is a mocking library for Kotlin. 
 - [ ] [Robolectric](http://robolectric.org/) - Robolectric is a framework that brings fast and reliable unit tests to Android.
 - [ ] [Espresso](https://developer.android.com/training/testing/espresso/) - Android UI tests
+- [x] [Room](https://developer.android.com/training/data-storage/room) - The Room persistence library provides an abstraction layer over SQLite to allow fluent database access while harnessing the full power of SQLite.
