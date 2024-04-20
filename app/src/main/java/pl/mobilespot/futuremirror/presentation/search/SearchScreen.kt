@@ -10,11 +10,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
-import pl.mobilespot.futuremirror.namedays.DayMonth
+import pl.mobilespot.futuremirror.namedays.NameDay
 
 @Composable
 fun SearchScreen(
-    dayMonths: List<DayMonth> = emptyList(), textValue: String = "",
+    dayMonths: List<NameDay> = emptyList(), textValue: String = "",
     onTextChanged: (String) -> Unit = {}
 ) {
 
@@ -32,7 +32,7 @@ fun SearchScreen(
         )
         Text(text = "Name days:")
         dayMonths.forEach {
-            Text(text = "Day: ${it.day}, month: ${it.month}")
+            Text(text = "Day: ${it.name}")
         }
     }
 }
@@ -40,7 +40,7 @@ fun SearchScreen(
 @Preview
 @Composable
 fun SearchScreenPreview() {
-    val list = listOf(DayMonth(1, 2), DayMonth(3, 4))
+    val list = listOf(NameDay.raw)
 
     SearchScreen(list)
 }

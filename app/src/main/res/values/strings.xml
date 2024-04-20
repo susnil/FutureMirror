@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Future Mirror</string>
     <string name="settings">Settings</string>
+    <string name="search">Search</string>
     <string name="title">Title</string>
     <string name="icon_description">todo</string>
     <string name="next">Next</string>

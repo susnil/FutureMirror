@@ -14,9 +14,8 @@ class SettingsViewModel @Inject constructor(private val getSavedNameDays: GetSav
 
     private val _uiState: MutableStateFlow<SettingsState> = MutableStateFlow(SettingsState.raw)
     var uiState = _uiState.asStateFlow()
-    fun getAllNames(): Flow<Int> {
-        return getSavedNameDays.getDayNamesCount()
-    }
+    fun getAllNames(): Flow<Int> =
+        getSavedNameDays.getDayNamesCount()
 
     fun toggleSwitch() {
         _uiState.value = uiState.value.copy(uiState.value.boolean.not())

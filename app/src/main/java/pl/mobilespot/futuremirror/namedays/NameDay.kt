@@ -12,4 +12,8 @@ data class NameDay(
     val name: String,
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-) : Parcelable
+) : Parcelable {
+    companion object {
+        val raw = NameDay("Anonim")
+    }
+}

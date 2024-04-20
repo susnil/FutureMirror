@@ -17,5 +17,8 @@ interface NameDayDao {
 
     @Query("SELECT count() FROM NameDay")
     fun getDayNameCountFlow(): Flow<Int>
+
+    @Query("SELECT * FROM NameDay WHERE name = :searchText ORDER BY id DESC")
+    fun findNames(searchText: String): Flow<List<NameDay>>
 }
 

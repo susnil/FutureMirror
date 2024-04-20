@@ -1,5 +1,6 @@
 package pl.mobilespot.futuremirror.presentation.navigation
 
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,7 +12,7 @@ import pl.mobilespot.futuremirror.R
 import pl.mobilespot.futuremirror.presentation.dashboard.DashboardRoute
 import pl.mobilespot.futuremirror.presentation.days.DayDetailsScreen
 import pl.mobilespot.futuremirror.presentation.news.NewsScreen
-import pl.mobilespot.futuremirror.presentation.search.SearchScreen
+import pl.mobilespot.futuremirror.presentation.search.SearchRoute
 import pl.mobilespot.futuremirror.presentation.settings.SettingsRoute
 
 @Composable
@@ -19,23 +20,31 @@ fun NavGraph() {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = Route.DashboardScreen.route) {
-        composable(route = Route.DashboardScreen.route) { backStackEntry ->
+        composable(route = Route.DashboardScreen.route) { _ ->
             DashboardRoute()
         }
-        composable(route = Route.SearchScreen.route) { backStackEntry ->
-            SearchScreen()
+        composable(route = Route.SearchScreen.route) { _ ->
+            SearchRoute()
         }
         composable(route = Route.DayDetailsScreen.route) { backStackEntry ->
             DayDetailsScreen()
         }
-        composable(route = Route.NewsScreen.route) { backStackEntry ->
+        composable(route = Route.NewsScreen.route) { _ ->
             NewsScreen()
         }
-        composable(route = Route.Settings.route) { backStackEntry ->
+        composable(route = Route.Settings.route) { _ ->
             SettingsRoute()
         }
     }
-    Button(onClick = { navController.navigate(Route.Settings.route) }) {
-        Text(text = stringResource(id = R.string.settings))
+    Row {
+        listOf(
+            Route.Settings.route to R.string.settings,
+            Route.SearchScreen.route to R.string.search
+        ).forEach {
+            Button(onClick = { navController.navigate(it.first) }) {
+                Text(text = stringResource(id = it.second))
+            }
+        }
     }
+
 }
