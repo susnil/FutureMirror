@@ -1,0 +1,19 @@
+Roadmap:
+Step 1: Prepare the simplest list of names.
+Table columns:
+id
+name
+Sample data:
+1 Bogdan
+2 Zenek
+
+Step 2: Prepare the one table with repeating names.
+Migration strategy: drop all data
+Table NameDay:
+id
+day
+month
+name
+
+Step 3: Prepare the two table and connection between them.
+Migration strategy: based on old data, the should process migration with old data.
