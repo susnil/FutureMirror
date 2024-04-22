@@ -1,24 +1,47 @@
 package pl.mobilespot.futuremirror.presentation.search
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.mapLatest
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import pl.mobilespot.futuremirror.namedays.GetSavedNameDays
 import pl.mobilespot.futuremirror.namedays.NameDay
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(private val getSavedNameDays: GetSavedNameDays) :
+class SearchViewModel @Inject constructor(
+    private val getSavedNameDays: GetSavedNameDays
+) :
     ViewModel() {
-    private var searchingText = ""
-    fun findNames(): Flow<List<NameDay>> {
-        return getSavedNameDays.findName(searchText = searchingText)
-    }
+
+    private val currentSearchQuery = MutableStateFlow("")
+
+    @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
+    val result: StateFlow<List<NameDay>> =
+        currentSearchQuery.debounce(250)
+            .distinctUntilChanged()
+            .filter { it.isNotBlank() }
+            .mapLatest { query ->
+                getSavedNameDays.findName(searchText = query)
+            }.stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(300),
+                initialValue = emptyList()
+            )
 
     fun setSearchingText(text: String) {
         Timber.d("Change input field: $text")
-        searchingText = text
-        //todo do not trigger change for found list
+        currentSearchQuery.update { text }
     }
 }

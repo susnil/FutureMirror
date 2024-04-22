@@ -18,7 +18,9 @@ class GetSavedNameDays @Inject constructor(
     fun getDayNamesCount(): Flow<Int> =
         nameDayDao.getDayNameCountFlow()
 
-    fun findName(searchText: String): Flow<List<NameDay>> =
-        nameDayDao.findNames(searchText)
+    suspend fun findName(searchText: String): List<NameDay> =
+        withContext(Dispatchers.IO) {
+            nameDayDao.findNames(searchText)
+        }
 
 }
