@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import pl.mobilespot.futuremirror.namedays.GetSavedNameDays
-import pl.mobilespot.futuremirror.namedays.NameDay
+import pl.mobilespot.futuremirror.namedays.SearchResult
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -28,7 +28,7 @@ class SearchViewModel @Inject constructor(
     private val currentSearchQuery = MutableStateFlow("")
 
     @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
-    val result: StateFlow<List<NameDay>> =
+    val result: StateFlow<SearchResult> =
         currentSearchQuery.debounce(250)
             .distinctUntilChanged()
             .filter { it.isNotBlank() }
@@ -37,7 +37,7 @@ class SearchViewModel @Inject constructor(
             }.stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(300),
-                initialValue = emptyList()
+                initialValue = SearchResult()
             )
 
     fun setSearchingText(text: String) {

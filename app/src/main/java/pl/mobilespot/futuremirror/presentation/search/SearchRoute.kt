@@ -7,8 +7,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun SearchRoute(viewModel: SearchViewModel = hiltViewModel()) {
-    val names by viewModel.result.collectAsState()
+    val result by viewModel.result.collectAsState()
 
 
-    SearchScreen(names, onTextChanged =  viewModel::setSearchingText)
+    SearchScreen(result.names, onTextChanged =  viewModel::setSearchingText)
 }

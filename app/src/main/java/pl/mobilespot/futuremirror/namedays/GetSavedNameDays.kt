@@ -7,7 +7,8 @@ import pl.mobilespot.futuremirror.data.NameDayDao
 import javax.inject.Inject
 
 class GetSavedNameDays @Inject constructor(
-    private val nameDayDao: NameDayDao
+    private val nameDayDao: NameDayDao,
+    private val nameDaysRepository: NameDaysRepository
 ) {
 
     suspend fun invoke(): List<NameDay> =
@@ -18,9 +19,9 @@ class GetSavedNameDays @Inject constructor(
     fun getDayNamesCount(): Flow<Int> =
         nameDayDao.getDayNameCountFlow()
 
-    suspend fun findName(searchText: String): List<NameDay> =
+    suspend fun findName(searchText: String): SearchResult =
         withContext(Dispatchers.IO) {
-            nameDayDao.findNames(searchText)
+            nameDaysRepository.getSearchResult(searchText)
         }
 
 }
