@@ -69,7 +69,6 @@ object AppModule {
     ): NameDayDao = logFMDatabase.nameDayDao()
 }
 
-
 class AppDatabaseCallback(private val provider: Provider<NameDayDao>) :
     RoomDatabase.Callback() {
 
@@ -77,13 +76,13 @@ class AppDatabaseCallback(private val provider: Provider<NameDayDao>) :
         super.onCreate(db)
         prepopulateDatabase()
     }
-
+    //todo it will be nice to trigger prepopulateDatabase if database is empty. More often than only onCreate
     @OptIn(DelicateCoroutinesApi::class)
     private fun prepopulateDatabase() {
         GlobalScope.launch(Dispatchers.IO) {
             Timber.d("Start prepopulate database")
-            provider.get().insert(NameDay("Bogdan"))
-            provider.get().insert(NameDay("Zenek"))
+            provider.get().insert(NameDay(name = "Bogdan", day = 3, month = 3))
+            provider.get().insert(NameDay(name = "Zenek", day = 4, month = 3))
             Timber.d("End prepopulate database")
         }
     }

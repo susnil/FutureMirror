@@ -32,7 +32,7 @@ fun SearchScreen(
         )
         Text(text = "Name days:")
         dayMonths.forEach {
-            Text(text = "Day: ${it.name}")
+            Text(text = "Name: ${it.name} day: ${it.day} month: ${it.month}")
         }
     }
 }

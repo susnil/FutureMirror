@@ -35,7 +35,7 @@ class FMDatabaseTest {
     @Ignore("TODO fix error: lateinit property fmDatabase has not been initialized")
     @Test
     fun testInitialDataInsertion() = runTest {
-        val initialData = NameDay("Bogdan")
+        val initialData = NameDay(name = "Bogdan", day = 3, month = 3)
         dao.insert(initialData)
 
         val loadedData = dao.getDayName()

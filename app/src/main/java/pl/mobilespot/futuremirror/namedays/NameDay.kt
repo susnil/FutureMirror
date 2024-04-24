@@ -9,11 +9,13 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity
 data class NameDay(
-    val name: String,
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
+    val name: String,
+    val day: Int,
+    val month: Int,
 ) : Parcelable {
     companion object {
-        val raw = NameDay("Anonim")
+        val raw = NameDay(name = "Anonim", day = 3, month = 3)
     }
 }

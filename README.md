@@ -9,7 +9,7 @@
 2. [x] Splash screen with icon fade out effect
 3. [x] Name days in Poland
 4. [x] Monthly agenda of name days
-5. [ ] Find name days
+5. [x] Find name days
 6. [ ] Find news/weather api
 7. [ ] Check how PagingData is working
 8. [ ] Add junit tests for use cases, viewmodel tests

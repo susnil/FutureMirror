@@ -22,8 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val getSavedNameDays: GetSavedNameDays
-) :
-    ViewModel() {
+) : ViewModel() {
 
     private val currentSearchQuery = MutableStateFlow("")
 
