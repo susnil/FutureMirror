@@ -76,14 +76,32 @@ class AppDatabaseCallback(private val provider: Provider<NameDayDao>) :
         super.onCreate(db)
         prepopulateDatabase()
     }
-    //todo it will be nice to trigger prepopulateDatabase if database is empty. More often than only onCreate
+
+    override fun onOpen(db: SupportSQLiteDatabase) {
+        super.onOpen(db)
+        prepopulateDatabase()
+    }
+
     @OptIn(DelicateCoroutinesApi::class)
     private fun prepopulateDatabase() {
         GlobalScope.launch(Dispatchers.IO) {
-            Timber.d("Start prepopulate database")
-            provider.get().insert(NameDay(name = "Bogdan", day = 3, month = 3))
-            provider.get().insert(NameDay(name = "Zenek", day = 4, month = 3))
-            Timber.d("End prepopulate database")
+            Timber.d("Check if is already exist any data")
+            val provider = provider.get()
+            if (provider.getDayNameCount() == 0) { //todo add mutex
+                Timber.d("No data! Start prepopulate database")
+                insertPLNames(provider)
+                Timber.d("End prepopulate database")
+            }
+        }
+    }
+
+    private fun insertPLNames(provider: NameDayDao) {
+        val data = listOf(
+            NameDay(name = "Bogdan", day = 3, month = 3),
+            NameDay(name = "Zenek", day = 4, month = 3)
+        )
+        data.forEach { nameDay ->
+            provider.insert(nameDay)
         }
     }
 }
