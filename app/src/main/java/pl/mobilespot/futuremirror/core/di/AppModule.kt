@@ -13,6 +13,8 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import pl.mobilespot.futuremirror.data.FMDatabase
 import pl.mobilespot.futuremirror.data.NameDayDao
 import pl.mobilespot.futuremirror.namedays.LocalDataSource
@@ -82,15 +84,19 @@ class AppDatabaseCallback(private val provider: Provider<NameDayDao>) :
         prepopulateDatabase()
     }
 
+    private val mutex = Mutex()
+
     @OptIn(DelicateCoroutinesApi::class)
     private fun prepopulateDatabase() {
         GlobalScope.launch(Dispatchers.IO) {
-            Timber.d("Check if is already exist any data")
-            val provider = provider.get()
-            if (provider.getDayNameCount() == 0) { //todo add mutex
-                Timber.d("No data! Start prepopulate database")
-                insertPLNames(provider)
-                Timber.d("End prepopulate database")
+            mutex.withLock {
+                Timber.d("Check if is already exist any data")
+                val provider = provider.get()
+                if (provider.getDayNameCount() == 0) {
+                    Timber.d("No data! Start prepopulate database")
+                    insertPLNames(provider)
+                    Timber.d("End prepopulate database")
+                }
             }
         }
     }
