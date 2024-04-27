@@ -16,6 +16,7 @@
 9. [ ] Add draggable element
 10. [ ] Dashboard personalization
 11. [ ] Use datastore for user settings
+12. [ ] Import name days when user first time open the app
 
 
 ## Technology stack
