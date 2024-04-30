@@ -5,11 +5,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import pl.mobilespot.futuremirror.datastore.UserPreferencesRepository
 import pl.mobilespot.futuremirror.namedays.GetSavedNameDays
 import javax.inject.Inject
 
 @HiltViewModel
-class SettingsViewModel @Inject constructor(private val getSavedNameDays: GetSavedNameDays) :
+class SettingsViewModel @Inject constructor(private val getSavedNameDays: GetSavedNameDays,
+    val userPreferencesRepository: UserPreferencesRepository) :
     ViewModel() {
 
     private val _uiState: MutableStateFlow<SettingsState> = MutableStateFlow(SettingsState.raw)

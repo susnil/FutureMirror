@@ -85,8 +85,10 @@ dependencies {
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
 
+    implementation(libs.androidx.dataStore.core)
+    implementation("com.google.protobuf:protobuf-javalite:3.18.0")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 }
-
 kapt {
     correctErrorTypes = true
 }
