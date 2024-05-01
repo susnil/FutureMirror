@@ -9,7 +9,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 @Composable
 fun SettingsRoute(viewModel: SettingsViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
-    val switch by viewModel.uiState.collectAsState()
+    val settings by viewModel.settings.collectAsState()
     val namesCount by viewModel.getAllNames().collectAsStateWithLifecycle(initialValue = 0)
-    SettingsScreen(uiState, namesCount) { viewModel.toggleSwitch() }
+    SettingsScreen(uiState, settings, namesCount) { viewModel.toggleSwitch() }
 }

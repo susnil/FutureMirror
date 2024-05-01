@@ -17,12 +17,18 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import pl.mobilespot.futuremirror.R
+import pl.mobilespot.futuremirror.datastore.UserPreferences
 import pl.mobilespot.futuremirror.designsystem.ui.padding
 import pl.mobilespot.futuremirror.testing.CommonTags.NAMES_COUNTER
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(state: SettingsState, namesCount: Int, toggleSwitch: () -> Unit = {}) {
+fun SettingsScreen(
+    state: SettingsState,
+    settings: UserPreferences?,
+    namesCount: Int,
+    toggleSwitch: () -> Unit = {}
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -52,7 +58,7 @@ fun SettingsScreen(state: SettingsState, namesCount: Int, toggleSwitch: () -> Un
                 name = R.string.title,
                 icon = R.drawable.ic_icon,
                 iconDesc = R.string.icon_description,
-                state = state.boolean
+                state = settings?.showCompleted ?: false
             ) {
                 toggleSwitch()
             }
@@ -76,5 +82,5 @@ fun SettingsScreen(state: SettingsState, namesCount: Int, toggleSwitch: () -> Un
 @Preview
 @Composable
 fun SettingsScreenPreview() {
-    SettingsScreen(SettingsState.raw, 0)
+    SettingsScreen(SettingsState.raw, null, 0)
 }

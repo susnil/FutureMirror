@@ -15,7 +15,7 @@
 8. [ ] Add junit tests for use cases, viewmodel tests
 9. [ ] Add draggable element
 10. [ ] Dashboard personalization
-11. [ ] Use datastore for user settings
+11. [x] Use datastore for user settings
 12. [ ] Import name days when user first time open the app
 
 
