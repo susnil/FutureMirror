@@ -8,5 +8,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 @Composable
 fun DashboardRoute(viewModel: DashboardViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    DashboardScreen(uiState, { day -> viewModel.selectDay(day) }, { viewModel.unselect() })
+    val userPreferences by viewModel.settings.collectAsStateWithLifecycle()
+    DashboardScreen(uiState, userPreferences, { day -> viewModel.selectDay(day) }) { viewModel.unselect() }
 }

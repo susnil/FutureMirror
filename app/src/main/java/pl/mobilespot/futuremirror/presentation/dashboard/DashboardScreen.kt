@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import pl.mobilespot.futuremirror.datastore.UserPreferences
 import pl.mobilespot.futuremirror.designsystem.ui.padding
 import pl.mobilespot.futuremirror.designsystem.ui.theme.FutureMirrorTheme
 import pl.mobilespot.futuremirror.presentation.DailyCard
@@ -22,7 +23,12 @@ import pl.mobilespot.futuremirror.presentation.GetDate
 import pl.mobilespot.futuremirror.presentation.isFutureDay
 
 @Composable
-fun DashboardScreen(uiState: DashboardState, selectDay: (Int) -> Unit, unselected: () -> Unit) {
+fun DashboardScreen(
+    uiState: DashboardState,
+    userPreferences: UserPreferences?,
+    selectDay: (Int) -> Unit,
+    unselected: () -> Unit
+) {
 
     Column {
         Row {
@@ -31,7 +37,15 @@ fun DashboardScreen(uiState: DashboardState, selectDay: (Int) -> Unit, unselecte
                 uiState.namesDay.forEach { name -> Text(name) }
             }
         }
-        val days = remember { getDaysOfMonth() }
+        val fromDay = if (userPreferences!= null) {
+            if (userPreferences.showCompleted) 1 else Calendar.getInstance()
+                .get(Calendar.DAY_OF_MONTH)
+        } else {
+            1
+        }
+
+
+        val days = remember { getDaysOfMonth(fromDay) }
         LazyVerticalGrid(
             columns = GridCells.Adaptive(minSize = 60.dp),
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small),
@@ -53,7 +67,7 @@ fun DashboardScreen(uiState: DashboardState, selectDay: (Int) -> Unit, unselecte
     }
 }
 
-private fun getDaysOfMonth() = (1..Calendar.getInstance()
+private fun getDaysOfMonth(fromDay: Int) = (fromDay..Calendar.getInstance()
     .getActualMaximum(Calendar.DAY_OF_MONTH)).map { it }
 
 @Composable
@@ -66,6 +80,6 @@ private fun isSelectedDay(
 @Composable
 private fun DashboardScreenPreview() {
     FutureMirrorTheme {
-        DashboardScreen(DashboardState.raw, {}, {})
+        DashboardScreen(DashboardState.raw, UserPreferences.raw, {}) {}
     }
 }

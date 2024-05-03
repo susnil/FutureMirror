@@ -2,7 +2,13 @@ package pl.mobilespot.futuremirror.presentation.dashboard
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
+import pl.mobilespot.futuremirror.datastore.UserPreferences
+import pl.mobilespot.futuremirror.datastore.UserPreferencesRepository
 import pl.mobilespot.futuremirror.namedays.DayMonth
 import pl.mobilespot.futuremirror.namedays.NameDaysRepository
 import timber.log.Timber
@@ -12,13 +18,21 @@ import javax.inject.Inject
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
     private val nameDaysRepository: NameDaysRepository,
-    private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle,
+    private val userPreferencesRepository: UserPreferencesRepository
 ) : ViewModel() {
     companion object {
         const val UI_STATE = "dashboard_ui_state"
     }
 
     val uiState = savedStateHandle.getStateFlow(UI_STATE, DashboardState.raw)
+
+    val settings: StateFlow<UserPreferences?> = userPreferencesRepository.userPreferences
+        .stateIn(
+            viewModelScope,
+            SharingStarted.Eagerly,
+            null,
+        ).also { Timber.d("user settings: ${it.value}") }
 
     init {
         val stateUi: DashboardState? = savedStateHandle[UI_STATE]
