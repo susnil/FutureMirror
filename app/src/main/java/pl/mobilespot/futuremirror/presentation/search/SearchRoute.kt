@@ -10,11 +10,5 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 @Composable
 fun SearchRoute(viewModel: SearchViewModel = hiltViewModel()) {
     val result by viewModel.result.collectAsStateWithLifecycle()
-
-    Column {
-        SearchScreen(result.names, onTextChanged = viewModel::setSearchingText)
-        if (result.isEmpty()) {
-            Text(text = "No result")
-        }
-    }
+    SearchScreen(result.names, onTextChanged = viewModel::setSearchingText)
 }

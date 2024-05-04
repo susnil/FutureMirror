@@ -34,6 +34,9 @@ fun SearchScreen(
         dayMonths.forEach {
             Text(text = "Name: ${it.name} day: ${it.day} month: ${it.month}")
         }
+        if (dayMonths.isEmpty()) {
+            Text(text = "No result")
+        }
     }
 }
 
