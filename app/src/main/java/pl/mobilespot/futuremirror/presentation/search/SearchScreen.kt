@@ -8,9 +8,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import pl.mobilespot.futuremirror.namedays.NameDay
+import pl.mobilespot.futuremirror.testing.CommonTags.SEARCH_NAME
 
 @Composable
 fun SearchScreen(
@@ -28,7 +32,8 @@ fun SearchScreen(
             onValueChange = { newValue ->
                 textFieldValue = newValue
                 onTextChanged(newValue.text)
-            }
+            },
+            modifier = Modifier.semantics { testTag = SEARCH_NAME }
         )
         Text(text = "Name days:")
         dayMonths.forEach {

@@ -15,6 +15,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import pl.mobilespot.futuremirror.core.MainActivity
 import pl.mobilespot.futuremirror.testing.CommonTags.NAMES_COUNTER
+import pl.mobilespot.futuremirror.testing.CommonTags.SEARCH_NAME
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
@@ -24,6 +25,7 @@ class IntegrationTest {
 
     private val unselect = "Unselect"
     private val settings = "Settings"
+    private val search = "Search"
     private val day = "1"
 
     @Test
@@ -54,6 +56,15 @@ class IntegrationTest {
             onNodeWithText(unselect).assertDoesNotExist()
 
             onNodeWithTag(NAMES_COUNTER).assertTextEquals("2")
+        }
+    }
+
+    @Test
+    fun `click search should open search name screen with empty search bar`() {
+        activityRule.apply {
+            onNodeWithText(search).performClick()
+
+            onNodeWithTag(SEARCH_NAME).assertTextEquals("")
         }
     }
 }
