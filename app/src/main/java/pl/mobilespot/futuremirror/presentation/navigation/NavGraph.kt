@@ -3,7 +3,6 @@ package pl.mobilespot.futuremirror.presentation.navigation
 import android.annotation.SuppressLint
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,12 +19,19 @@ import pl.mobilespot.futuremirror.presentation.settings.SettingsRoute
 @Composable
 fun NavGraph() {
     val navController = rememberNavController()
-    val bottomNavigationItems = listOf(
-        Route.DashboardScreen.route to R.string.dashboard,
-        Route.Settings.route to R.string.settings,
-        Route.SearchScreen.route to R.string.search,
-        Route.DayDetailsScreen.route to R.string.day_details
-    )
+    val bottomNavigationItems =
+        listOf(
+            Route.DashboardScreen.route to BottomNavigationItem(
+                R.drawable.ic_dashboard,
+                R.string.dashboard
+            ),
+            Route.SearchScreen.route to BottomNavigationItem(R.drawable.ic_search, R.string.search),
+            Route.DayDetailsScreen.route to BottomNavigationItem(
+                R.drawable.ic_day_details,
+                R.string.day_details
+            ),
+            Route.Settings.route to BottomNavigationItem(R.drawable.ic_settings, R.string.settings),
+        )
     //todo remove
 //    Button(onClick = { navController.navigateToDayDetails("4") }) {
 //        Text(text = "Go to 4 day details")
@@ -33,10 +39,7 @@ fun NavGraph() {
     Scaffold(bottomBar = {
         BottomNavigation(
             items = bottomNavigationItems.map {
-                BottomNavigationItem(
-                    R.drawable.ic_icon,
-                    stringResource(id = it.second)
-                )
+                it.second
             },
             selectedItem = 0,//todo selectedItem
             onItemClick = { index ->

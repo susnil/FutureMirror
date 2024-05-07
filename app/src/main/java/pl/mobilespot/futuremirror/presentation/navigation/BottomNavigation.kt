@@ -2,6 +2,7 @@ package pl.mobilespot.futuremirror.presentation.navigation
 
 import android.content.res.Configuration
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pl.mobilespot.futuremirror.R
@@ -44,7 +46,7 @@ fun BottomNavigation(
                             modifier = Modifier.size(20.dp),
                         )
                         Spacer(modifier = Modifier.height(6.dp))
-                        Text(text = item.text, style = MaterialTheme.typography.labelSmall)
+                        Text(text = stringResource(id = item.label), style = MaterialTheme.typography.labelSmall)
                     }
                 },
             )
@@ -54,7 +56,7 @@ fun BottomNavigation(
 
 data class BottomNavigationItem(
     @DrawableRes val icon: Int,
-    val text: String
+    @StringRes val label: Int,
 )
 
 @Preview
@@ -63,9 +65,9 @@ data class BottomNavigationItem(
 fun BottomNavigationPreview() {
     FutureMirrorTheme {
         BottomNavigation(items = listOf(
-            BottomNavigationItem(icon = R.drawable.ic_icon, text = "Home"),
-            BottomNavigationItem(icon = R.drawable.ic_icon, text = "Search"),
-            BottomNavigationItem(icon = R.drawable.ic_icon, text = "News"),
+            BottomNavigationItem(icon = R.drawable.ic_dashboard, label = R.string.dashboard),
+            BottomNavigationItem(icon = R.drawable.ic_search, label = R.string.search),
+            BottomNavigationItem(icon = R.drawable.ic_newspaper, label = R.string.news),
         ), selectedItem = 0, onItemClick = {})
     }
 }
