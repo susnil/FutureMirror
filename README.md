@@ -2,6 +2,8 @@
 
 #### Smart Mirror App
 
+The app can show the viewer different kinds of information in the form of widgets, such as calendar, name days and news updates.
+
 ## How to build
 
 ` ./gradlew clean assembleDebug`
@@ -15,7 +17,7 @@
 5. [x] Find name days
 6. [ ] Find news/weather api
 7. [ ] Check how PagingData is working
-8. [ ] Add junit tests for use cases, viewmodel tests
+8. [x] Add junit tests for use cases, viewmodel tests
 9. [ ] Add draggable element
 10. [ ] Dashboard personalization
 11. [x] Use datastore for user settings
