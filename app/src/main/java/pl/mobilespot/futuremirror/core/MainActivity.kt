@@ -12,13 +12,9 @@ import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 import pl.mobilespot.futuremirror.designsystem.ui.theme.FutureMirrorTheme
 import pl.mobilespot.futuremirror.presentation.navigation.NavGraph
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    @Inject
-    lateinit var mySingleton: SimpleObject
     override fun onCreate(savedInstanceState: Bundle?) {
         adaptSplashScreen()
         super.onCreate(savedInstanceState)
@@ -36,6 +32,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        mySingleton.doSomething()
     }
 }
