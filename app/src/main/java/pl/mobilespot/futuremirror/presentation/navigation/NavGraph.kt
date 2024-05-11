@@ -1,14 +1,19 @@
 package pl.mobilespot.futuremirror.presentation.navigation
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import pl.mobilespot.futuremirror.R
+import pl.mobilespot.futuremirror.designsystem.ui.padding
 import pl.mobilespot.futuremirror.presentation.dashboard.DashboardRoute
 import pl.mobilespot.futuremirror.presentation.days.DayDetailsScreen
 import pl.mobilespot.futuremirror.presentation.news.NewsScreen
@@ -47,29 +52,31 @@ fun NavGraph() {
             }
         )
     }) {
-        NavHost(navController = navController, startDestination = Route.DashboardScreen.route) {
-            composable(route = Route.DashboardScreen.route) { _ ->
-                DashboardRoute()
-            }
-            composable(route = Route.SearchScreen.route) { _ ->
-                SearchRoute()
-            }
-            composable(
-                route = Route.DayDetailsScreen.route,
-                arguments = listOf(navArgument(Route.DayDetailsScreen.DAY_ID_ARG) {
-                    type = NavType.StringType
-                    defaultValue = null
-                    nullable = true
-                })
-            ) { _ ->
-                //todo handle arg
-                DayDetailsScreen()
-            }
-            composable(route = Route.NewsScreen.route) { _ ->
-                NewsScreen()
-            }
-            composable(route = Route.Settings.route) { _ ->
-                SettingsRoute()
+        Box (modifier = Modifier.padding(MaterialTheme.padding.small)) {
+            NavHost(navController = navController, startDestination = Route.DashboardScreen.route) {
+                composable(route = Route.DashboardScreen.route) { _ ->
+                    DashboardRoute()
+                }
+                composable(route = Route.SearchScreen.route) { _ ->
+                    SearchRoute()
+                }
+                composable(
+                    route = Route.DayDetailsScreen.route,
+                    arguments = listOf(navArgument(Route.DayDetailsScreen.DAY_ID_ARG) {
+                        type = NavType.StringType
+                        defaultValue = null
+                        nullable = true
+                    })
+                ) { _ ->
+                    //todo handle arg
+                    DayDetailsScreen()
+                }
+                composable(route = Route.NewsScreen.route) { _ ->
+                    NewsScreen()
+                }
+                composable(route = Route.Settings.route) { _ ->
+                    SettingsRoute()
+                }
             }
         }
     }
