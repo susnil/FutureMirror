@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Button
@@ -35,13 +34,8 @@ fun DashboardScreen(
 ) {
 
     Column {
-        Row(
-            Modifier
-                .fillMaxWidth()
-                .background(Color.LightGray)
-        ) {
+        SubHeader {
             GetDate()
-
         }
         val fromDay = if (userPreferences != null) {
             if (userPreferences.showCompleted) 1 else Calendar.getInstance()
@@ -65,11 +59,7 @@ fun DashboardScreen(
                     Modifier.clickable { selectDay(days[item]) })
             })
         }
-        Row(
-            Modifier
-                .fillMaxWidth()
-                .background(Color.LightGray)
-        ) {
+        SubHeader {
             Column {
                 uiState.namesDay.forEach { name -> Text(name) }
             }
@@ -81,6 +71,18 @@ fun DashboardScreen(
             }
         }
     }
+}
+
+@Composable
+fun SubHeader(content: @Composable () -> Unit) {
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .background(Color.LightGray)
+    ) {
+        content()
+    }
+
 }
 
 private fun getDaysOfMonth(fromDay: Int) = (fromDay..Calendar.getInstance()
