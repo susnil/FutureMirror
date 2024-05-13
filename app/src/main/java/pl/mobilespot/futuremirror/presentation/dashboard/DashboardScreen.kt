@@ -61,7 +61,7 @@ fun DashboardScreen(
         }
         SubHeader {
             Column {
-                uiState.namesDay.forEach { name -> Text(name) }
+                uiState.namesDay.forEach { name -> Text(name, color = MaterialTheme.colorScheme.onSurface) }
             }
         }
 
@@ -78,7 +78,7 @@ fun SubHeader(content: @Composable () -> Unit) {
     Row(
         Modifier
             .fillMaxWidth()
-            .background(Color.LightGray)
+            .background(MaterialTheme.colorScheme.surface)
     ) {
         content()
     }
