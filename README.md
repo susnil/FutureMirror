@@ -4,6 +4,11 @@
 
 The app can show the viewer different kinds of information in the form of widgets, such as calendar, name days and news updates.
 
+`Choose your language`
+
+[EN](https://github.com/susnil/FutureMirror/blob/master/doc/README.en.md) 
+[PL](https://github.com/susnil/FutureMirror/blob/master/doc/README.pl.md) 
+
 ## How to build
 
 ` ./gradlew clean assembleDebug`
