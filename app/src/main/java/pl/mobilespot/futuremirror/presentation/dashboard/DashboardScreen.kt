@@ -15,12 +15,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import pl.mobilespot.futuremirror.datastore.UserPreferences
 import pl.mobilespot.futuremirror.designsystem.ui.padding
 import pl.mobilespot.futuremirror.designsystem.ui.theme.FutureMirrorTheme
+import pl.mobilespot.futuremirror.designsystem.ui.theme.dimen64
 import pl.mobilespot.futuremirror.presentation.DailyCard
 import pl.mobilespot.futuremirror.presentation.GetDate
 import pl.mobilespot.futuremirror.presentation.isFutureDay
@@ -47,7 +46,7 @@ fun DashboardScreen(
 
         val days = remember { getDaysOfMonth(fromDay) }
         LazyVerticalGrid(
-            columns = GridCells.Adaptive(minSize = 60.dp),
+            columns = GridCells.Adaptive(minSize = dimen64),
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small)
         ) {

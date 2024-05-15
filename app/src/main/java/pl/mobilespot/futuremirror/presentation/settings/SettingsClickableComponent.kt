@@ -26,9 +26,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import pl.mobilespot.futuremirror.R
 import pl.mobilespot.futuremirror.designsystem.ui.padding
+import pl.mobilespot.futuremirror.designsystem.ui.theme.dimen24
 
 @Composable
 fun SettingsClickableComponent(
@@ -54,7 +54,7 @@ fun SettingsClickableComponent(
                         painterResource(id = icon),
                         contentDescription = stringResource(id = iconDesc),
                         modifier = Modifier
-                            .size(24.dp)
+                            .size(dimen24)
                     )
                     Spacer(modifier = Modifier.width(MaterialTheme.padding.small))
                     Text(

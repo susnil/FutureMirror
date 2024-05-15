@@ -19,9 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import pl.mobilespot.futuremirror.R
 import pl.mobilespot.futuremirror.designsystem.ui.theme.FutureMirrorTheme
+import pl.mobilespot.futuremirror.designsystem.ui.theme.dimen10
+import pl.mobilespot.futuremirror.designsystem.ui.theme.dimen20
+import pl.mobilespot.futuremirror.designsystem.ui.theme.dimen6
 
 @Composable
 fun BottomNavigation(
@@ -32,7 +34,7 @@ fun BottomNavigation(
     NavigationBar(
         modifier = Modifier.fillMaxWidth(),
         containerColor = MaterialTheme.colorScheme.background,
-        tonalElevation = 10.dp
+        tonalElevation = dimen10
     ) {
         items.forEachIndexed { index, item ->
             NavigationBarItem(
@@ -43,9 +45,9 @@ fun BottomNavigation(
                         Icon(
                             painter = painterResource(id = item.icon),
                             contentDescription = null,
-                            modifier = Modifier.size(20.dp),
+                            modifier = Modifier.size(dimen20),
                         )
-                        Spacer(modifier = Modifier.height(6.dp))
+                        Spacer(modifier = Modifier.height(dimen6))
                         Text(text = stringResource(id = item.label), style = MaterialTheme.typography.labelSmall)
                     }
                 },
