@@ -31,9 +31,9 @@ fun NavGraph() {
                 R.string.dashboard
             ),
             Route.SearchScreen.route to BottomNavigationItem(R.drawable.ic_search, R.string.search),
-            Route.DayDetailsScreen.route to BottomNavigationItem(
-                R.drawable.ic_day_details,
-                R.string.day_details
+            Route.NewsScreen.route to BottomNavigationItem(
+                R.drawable.ic_newspaper,
+                R.string.news
             ),
             Route.Settings.route to BottomNavigationItem(R.drawable.ic_settings, R.string.settings),
         )
