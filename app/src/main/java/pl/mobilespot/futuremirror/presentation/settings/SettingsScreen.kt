@@ -55,7 +55,7 @@ fun SettingsScreen(
 
             }
             SettingsSwitchComponent(
-                name = R.string.title,
+                name = R.string.settings_show_past_days,
                 icon = R.drawable.ic_icon,
                 iconDesc = R.string.icon_description,
                 state = settings?.showCompleted ?: false
