@@ -46,7 +46,7 @@ fun DashboardScreen(
 
         val days = remember { getDaysOfMonth(fromDay) }
         LazyVerticalGrid(
-            columns = GridCells.Adaptive(minSize = dimen64),
+            columns = GridCells.Fixed(7),
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small)
         ) {
