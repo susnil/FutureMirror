@@ -19,10 +19,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import pl.mobilespot.futuremirror.datastore.UserPreferences
 import pl.mobilespot.futuremirror.designsystem.ui.padding
 import pl.mobilespot.futuremirror.designsystem.ui.theme.FutureMirrorTheme
-import pl.mobilespot.futuremirror.designsystem.ui.theme.dimen64
 import pl.mobilespot.futuremirror.presentation.DailyCard
 import pl.mobilespot.futuremirror.presentation.GetDate
 import pl.mobilespot.futuremirror.presentation.isFutureDay
+import java.time.DayOfWeek
 
 @Composable
 fun DashboardScreen(
@@ -55,7 +55,8 @@ fun DashboardScreen(
                     days[item],
                     isFutureDay(days[item]),
                     isSelectedDay(uiState, days[item]),
-                    Modifier.clickable { selectDay(days[item]) })
+                    DayOfWeek.of((days[item] % 7)+1) == DayOfWeek.SUNDAY,
+                    Modifier.clickable { selectDay(days[item]) },)
             })
         }
         SubHeader {

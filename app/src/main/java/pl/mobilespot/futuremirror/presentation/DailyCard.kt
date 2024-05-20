@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import androidx.compose.ui.unit.dp
 import pl.mobilespot.futuremirror.designsystem.ui.padding
 
 @Composable
@@ -25,6 +24,7 @@ fun DailyCard(
     day: Int,
     isFutureDay: Boolean,
     isSelectedDay: Boolean = false,
+    isSunday: Boolean,
     @SuppressLint("ModifierParameter") modifier: Modifier = Modifier
 ) {
     Card(
@@ -36,7 +36,7 @@ fun DailyCard(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.medium)
         ) {
-            Text(text = "$day", color = getColorForFutureDay(isFutureDay))
+            Text(text = "$day", color = getColorForDay(isFutureDay, isSunday))
         }
     }
 }
@@ -44,13 +44,13 @@ fun DailyCard(
 @Preview
 @Composable
 fun FutureDailyCardPreview(@PreviewParameter(DayProvider::class) day: Int) {
-    DailyCard(day, false)
+    DailyCard(day, isSunday = false, isFutureDay = false)
 }
 
 @Preview
 @Composable
 fun PastDailyCardPreview(@PreviewParameter(DayProvider::class, limit = 1) day: Int) {
-    DailyCard(day, true)
+    DailyCard(day, isSunday = false, isFutureDay = true)
 }
 
 class DayProvider : PreviewParameterProvider<Int> {
@@ -68,6 +68,6 @@ fun isFutureDay(
     day: Int
 ) = day > Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
 
-fun getColorForFutureDay(isFutureDay: Boolean) = if (isFutureDay) {
+fun getColorForDay(isFutureDay: Boolean, isSunday: Boolean) = if (isFutureDay) {
     Color.Gray
-} else Color.Black
+} else if (isSunday) Color.Red else Color.Black
