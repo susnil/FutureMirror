@@ -1,6 +1,5 @@
 package pl.mobilespot.futuremirror.presentation.dashboard
 
-import android.icu.util.Calendar
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -13,10 +12,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import pl.mobilespot.futuremirror.datastore.UserPreferences
 import pl.mobilespot.futuremirror.designsystem.ui.padding
 import pl.mobilespot.futuremirror.designsystem.ui.theme.FutureMirrorTheme
 import pl.mobilespot.futuremirror.presentation.DailyCard
@@ -27,24 +24,16 @@ import java.time.DayOfWeek
 @Composable
 fun DashboardScreen(
     uiState: DashboardState,
-    userPreferences: UserPreferences?,
     selectDay: (Int) -> Unit,
-    unselected: () -> Unit
+    unselected: () -> Unit,
+    days: List<Int>
 ) {
 
     Column {
         SubHeader {
             GetDate()
         }
-        val fromDay = if (userPreferences != null) {
-            if (userPreferences.showCompleted) 1 else Calendar.getInstance()
-                .get(Calendar.DAY_OF_MONTH)
-        } else {
-            1
-        }
 
-
-        val days = remember { getDaysOfMonth(fromDay) }
         LazyVerticalGrid(
             columns = GridCells.Fixed(7),
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small),
@@ -85,9 +74,6 @@ fun SubHeader(content: @Composable () -> Unit) {
 
 }
 
-private fun getDaysOfMonth(fromDay: Int) = (fromDay..Calendar.getInstance()
-    .getActualMaximum(Calendar.DAY_OF_MONTH)).map { it }
-
 @Composable
 private fun isSelectedDay(
     uiState: DashboardState,
@@ -98,6 +84,6 @@ private fun isSelectedDay(
 @Composable
 private fun DashboardScreenPreview() {
     FutureMirrorTheme {
-        DashboardScreen(DashboardState.raw, UserPreferences.raw, {}) {}
+        DashboardScreen(DashboardState.raw, {}, {}, (1..31).toList() )
     }
 }

@@ -1,11 +1,14 @@
 package pl.mobilespot.futuremirror.presentation.dashboard
 
+import android.icu.util.Calendar
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import pl.mobilespot.futuremirror.datastore.UserPreferences
 import pl.mobilespot.futuremirror.datastore.UserPreferencesRepository
@@ -26,8 +29,16 @@ class DashboardViewModel @Inject constructor(
     }
 
     val uiState = savedStateHandle.getStateFlow(UI_STATE, DashboardState.raw)
+    private val _dayOfMoths: MutableStateFlow<List<Int>> = MutableStateFlow(getDaysOfMonth(1))
+    val dayOfMoths = _dayOfMoths.asStateFlow()
 
-    val settings: StateFlow<UserPreferences?> = userPreferencesRepository.userPreferences
+//        val fromDay = if (settings != null) {
+//        if (settings.showCompleted) 1 else Calendar.getInstance()
+//            .get(Calendar.DAY_OF_MONTH)
+//    } else {
+//        1
+//    }
+    private val settings: StateFlow<UserPreferences?> = userPreferencesRepository.userPreferences
         .stateIn(
             viewModelScope,
             SharingStarted.Eagerly,
@@ -63,3 +74,5 @@ class DashboardViewModel @Inject constructor(
     }
 }
 
+private fun getDaysOfMonth(fromDay: Int) = (fromDay..Calendar.getInstance()
+    .getActualMaximum(Calendar.DAY_OF_MONTH)).map { it }
