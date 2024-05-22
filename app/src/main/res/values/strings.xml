@@ -8,5 +8,6 @@
     <string name="icon_description">todo</string>
     <string name="next">Next</string>
     <string name="news">news</string>
+    <string name="menu_news">@string/news</string>
     <string name="settings_show_past_days">Show past days</string>
 </resources>

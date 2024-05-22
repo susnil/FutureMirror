@@ -33,7 +33,7 @@ fun NavGraph() {
             Route.SearchScreen.route to BottomNavigationItem(R.drawable.ic_search, R.string.search),
             Route.NewsScreen.route to BottomNavigationItem(
                 R.drawable.ic_newspaper,
-                R.string.news
+                R.string.menu_news
             ),
             Route.Settings.route to BottomNavigationItem(R.drawable.ic_settings, R.string.settings),
         )
