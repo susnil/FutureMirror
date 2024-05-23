@@ -5,10 +5,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import pl.mobilespot.futuremirror.datastore.UserPreferences
 import pl.mobilespot.futuremirror.datastore.UserPreferencesRepository
@@ -29,21 +28,27 @@ class DashboardViewModel @Inject constructor(
     }
 
     val uiState = savedStateHandle.getStateFlow(UI_STATE, DashboardState.raw)
-    private val _dayOfMoths: MutableStateFlow<List<Int>> = MutableStateFlow(getDaysOfMonth(1))
-    val dayOfMoths = _dayOfMoths.asStateFlow()
 
-//        val fromDay = if (settings != null) {
-//        if (settings.showCompleted) 1 else Calendar.getInstance()
-//            .get(Calendar.DAY_OF_MONTH)
-//    } else {
-//        1
-//    }
     private val settings: StateFlow<UserPreferences?> = userPreferencesRepository.userPreferences
         .stateIn(
             viewModelScope,
             SharingStarted.Eagerly,
             null,
         ).also { Timber.d("user settings: ${it.value}") }
+    private val dayFrom
+        get() = settings.map {
+            if (it != null) {
+                if (it.showCompleted) 1 else Calendar.getInstance()
+                    .get(Calendar.DAY_OF_MONTH)
+            } else {
+                1
+            }
+        }
+    val dayOfMoths: StateFlow<List<Int>> = dayFrom.map { getDaysOfMonth(it) }.stateIn(
+        viewModelScope,
+        SharingStarted.Eagerly,
+        emptyList(),
+    )
 
     init {
         val stateUi: DashboardState? = savedStateHandle[UI_STATE]
