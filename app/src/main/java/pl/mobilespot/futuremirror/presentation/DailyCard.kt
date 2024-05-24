@@ -24,7 +24,7 @@ fun DailyCard(
     day: Int,
     isFutureDay: Boolean,
     isSelectedDay: Boolean = false,
-    isSunday: Boolean,
+    isWeekend: Boolean,
     @SuppressLint("ModifierParameter") modifier: Modifier = Modifier
 ) {
     Card(
@@ -36,7 +36,7 @@ fun DailyCard(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.medium)
         ) {
-            Text(text = "$day", color = getColorForDay(isFutureDay, isSunday))
+            Text(text = "$day", color = getColorForDay(isFutureDay, isWeekend))
         }
     }
 }
@@ -44,13 +44,13 @@ fun DailyCard(
 @Preview
 @Composable
 fun FutureDailyCardPreview(@PreviewParameter(DayProvider::class) day: Int) {
-    DailyCard(day, isSunday = false, isFutureDay = false)
+    DailyCard(day, isWeekend = false, isFutureDay = false)
 }
 
 @Preview
 @Composable
 fun PastDailyCardPreview(@PreviewParameter(DayProvider::class, limit = 1) day: Int) {
-    DailyCard(day, isSunday = false, isFutureDay = true)
+    DailyCard(day, isWeekend = false, isFutureDay = true)
 }
 
 class DayProvider : PreviewParameterProvider<Int> {
@@ -68,6 +68,11 @@ fun isFutureDay(
     day: Int
 ) = day > Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
 
-fun getColorForDay(isFutureDay: Boolean, isSunday: Boolean) = if (isFutureDay) {
-    Color.Gray
-} else if (isSunday) Color.Red else Color.Black
+fun getColorForDay(isFutureDay: Boolean, isSunday: Boolean) =
+    when {
+        isFutureDay && isSunday -> Color.Red
+        isFutureDay && !isSunday -> Color.Black
+        !isFutureDay && isSunday -> Color(0xFFAA0000)
+        else -> Color.Gray
+    }
+

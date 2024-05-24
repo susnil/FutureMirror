@@ -19,14 +19,13 @@ import pl.mobilespot.futuremirror.designsystem.ui.theme.FutureMirrorTheme
 import pl.mobilespot.futuremirror.presentation.DailyCard
 import pl.mobilespot.futuremirror.presentation.GetDate
 import pl.mobilespot.futuremirror.presentation.isFutureDay
-import java.time.DayOfWeek
 
 @Composable
 fun DashboardScreen(
     uiState: DashboardState,
     selectDay: (Int) -> Unit,
     unselected: () -> Unit,
-    days: List<Int>
+    days: List<DashboardDay>
 ) {
 
     Column {
@@ -41,16 +40,22 @@ fun DashboardScreen(
         ) {
             items(days.count(), itemContent = { item ->
                 DailyCard(
-                    days[item],
-                    isFutureDay(days[item]),
-                    isSelectedDay(uiState, days[item]),
-                    DayOfWeek.of((days[item] % 7)+1) == DayOfWeek.SUNDAY,
-                    Modifier.clickable { selectDay(days[item]) },)
+                    days[item].day,
+                    isFutureDay(days[item].day),
+                    isSelectedDay(uiState, days[item].day),
+                    days[item].isWeekend,
+                    Modifier.clickable { selectDay(days[item].day) },
+                )
             })
         }
         SubHeader {
             Column {
-                uiState.namesDay.forEach { name -> Text(name, color = MaterialTheme.colorScheme.onSurface) }
+                uiState.namesDay.forEach { name ->
+                    Text(
+                        name,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                }
             }
         }
 
@@ -71,7 +76,6 @@ fun SubHeader(content: @Composable () -> Unit) {
     ) {
         content()
     }
-
 }
 
 @Composable
@@ -84,6 +88,10 @@ private fun isSelectedDay(
 @Composable
 private fun DashboardScreenPreview() {
     FutureMirrorTheme {
-        DashboardScreen(DashboardState.raw, {}, {}, (1..31).toList() )
+        DashboardScreen(
+            DashboardState.raw,
+            {},
+            {},
+            (1..31).toList().map { DashboardDay(it, false) })
     }
 }

@@ -44,7 +44,7 @@ class DashboardViewModel @Inject constructor(
                 1
             }
         }
-    val dayOfMoths: StateFlow<List<Int>> = dayFrom.map { getDaysOfMonth(it) }.stateIn(
+    val dayOfMoths: StateFlow<List<DashboardDay>> = dayFrom.map { getDaysOfMonth(it) }.stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
         emptyList(),
@@ -79,5 +79,14 @@ class DashboardViewModel @Inject constructor(
     }
 }
 
-private fun getDaysOfMonth(fromDay: Int) = (fromDay..Calendar.getInstance()
-    .getActualMaximum(Calendar.DAY_OF_MONTH)).map { it }
+private fun getDaysOfMonth(fromDay: Int): List<DashboardDay> {
+    val now = Calendar.getInstance()
+
+    return (fromDay..now
+        .getActualMaximum(Calendar.DAY_OF_MONTH)).map { it }.map {
+        now.set(Calendar.DAY_OF_MONTH, it)
+        DashboardDay(it, now.isWeekend)
+    }
+}
+
+data class DashboardDay(val day: Int, val isWeekend: Boolean)
