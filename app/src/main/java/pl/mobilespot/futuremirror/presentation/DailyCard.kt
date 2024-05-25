@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import pl.mobilespot.futuremirror.designsystem.ui.padding
+import pl.mobilespot.futuremirror.designsystem.ui.theme.DarkRed
 
 @Composable
 fun DailyCard(
@@ -72,7 +73,7 @@ fun getColorForDay(isFutureDay: Boolean, isSunday: Boolean) =
     when {
         isFutureDay && isSunday -> Color.Red
         isFutureDay && !isSunday -> Color.Black
-        !isFutureDay && isSunday -> Color(0xFFAA0000)
+        !isFutureDay && isSunday -> DarkRed
         else -> Color.Gray
     }
 
