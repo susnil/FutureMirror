@@ -25,7 +25,8 @@ fun DashboardScreen(
     uiState: DashboardState,
     selectDay: (Int) -> Unit,
     unselected: () -> Unit,
-    days: List<DashboardDay>
+    days: List<DashboardDay>,
+    emptySlots: Int
 ) {
 
     Column {
@@ -38,6 +39,7 @@ fun DashboardScreen(
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small)
         ) {
+            items(emptySlots) {}
             items(days.count(), itemContent = { item ->
                 DailyCard(
                     days[item].day,
@@ -92,6 +94,7 @@ private fun DashboardScreenPreview() {
             DashboardState.raw,
             {},
             {},
-            (1..31).toList().map { DashboardDay(it, false) })
+            (1..31).toList().map { DashboardDay(it, false) },
+            1)
     }
 }
