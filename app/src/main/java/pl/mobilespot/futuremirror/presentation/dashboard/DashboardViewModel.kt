@@ -1,6 +1,7 @@
 package pl.mobilespot.futuremirror.presentation.dashboard
 
 import android.icu.util.Calendar
+import android.icu.util.Calendar.DAY_OF_WEEK
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -29,6 +30,7 @@ class DashboardViewModel @Inject constructor(
     }
 
     val uiState = savedStateHandle.getStateFlow(UI_STATE, DashboardState.raw)
+    private val localDate = LocalDate.now()
 
     private val settings: StateFlow<UserPreferences?> = userPreferencesRepository.userPreferences
         .stateIn(
@@ -50,7 +52,14 @@ class DashboardViewModel @Inject constructor(
         SharingStarted.Eagerly,
         emptyList(),
     )
-    val emptySlots: StateFlow<Int> = MutableStateFlow(3)
+    val emptySlots: StateFlow<Int> = MutableStateFlow(getEmptySlots())
+
+    private fun getEmptySlots(): Int {
+        val now = Calendar.getInstance()
+        now.set(Calendar.DAY_OF_MONTH, 1)
+        val diff = now.get(DAY_OF_WEEK) - 2
+        return if (diff >= 0) diff else diff + 7
+    }
 
     init {
         val stateUi: DashboardState? = savedStateHandle[UI_STATE]
@@ -60,7 +69,6 @@ class DashboardViewModel @Inject constructor(
     }
 
     private fun updateNameDay() {
-        val localDate = LocalDate.now()
         val dayMonth =
             DayMonth(uiState.value.selectedDay ?: localDate.dayOfMonth, localDate.monthValue)
         val nameDays = nameDaysRepository.getNamesForDay(dayMonth)
