@@ -47,12 +47,9 @@ fun SettingsScreen(
                 .padding(it)
                 .padding(MaterialTheme.padding.medium)
         ) {
-            SettingsClickableComponent(
-                name = R.string.title,
-                icon = R.drawable.ic_icon,
-                iconDesc = R.string.icon_description,
-            ) {
-
+            Row {
+                Text(text = "Name day count: ")
+                Text("$namesCount", modifier = Modifier.semantics { testTag = NAMES_COUNTER })
             }
             SettingsSwitchComponent(
                 name = R.string.settings_show_past_days,
@@ -61,18 +58,6 @@ fun SettingsScreen(
                 state = settings?.showCompleted ?: false
             ) {
                 toggleSwitch()
-            }
-
-            SettingsTextComponent(
-                name = R.string.title,
-                icon = R.drawable.ic_icon,
-                iconDesc = R.string.icon_description,
-                state = state.text,
-                onSave = {}, onCheck = { _ -> true },
-            )
-            Row {
-                Text(text = "Name day count: ")
-                Text("$namesCount", modifier = Modifier.semantics { testTag = NAMES_COUNTER })
             }
         }
     }
