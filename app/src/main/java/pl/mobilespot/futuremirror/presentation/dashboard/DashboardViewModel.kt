@@ -56,7 +56,9 @@ class DashboardViewModel @Inject constructor(
 
     private fun getEmptySlots(): Int {
         val now = Calendar.getInstance()
-        now.set(Calendar.DAY_OF_MONTH, 1)
+        if (settings.value?.showCompleted == true) {
+            now.set(Calendar.DAY_OF_MONTH, 1)
+        }
         val diff = now.get(DAY_OF_WEEK) - 2
         return if (diff >= 0) diff else diff + 7
     }
