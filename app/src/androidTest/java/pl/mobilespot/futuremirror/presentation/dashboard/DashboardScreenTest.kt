@@ -7,7 +7,6 @@ import androidx.compose.ui.test.performClick
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
-import pl.mobilespot.futuremirror.datastore.UserPreferences
 
 class DashboardScreenTest {
 
@@ -21,7 +20,12 @@ class DashboardScreenTest {
     @Test
     fun `select a day should show unselect button`() {
         composeTestRule.setContent {
-            DashboardScreen(DashboardState.raw, UserPreferences.raw, {}) {}
+            DashboardScreen(
+                DashboardState.raw,
+                {},
+                {}, (1..31).toList().map { DashboardDay(it, false) },
+                1
+            )
         }
 
         composeTestRule.onNodeWithText(day).performClick()
