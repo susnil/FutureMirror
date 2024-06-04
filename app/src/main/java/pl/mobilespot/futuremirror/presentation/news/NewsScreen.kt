@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
+import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
 import pl.mobilespot.futuremirror.designsystem.ui.theme.dimen16
 import kotlin.math.roundToInt
@@ -40,7 +41,7 @@ fun NewsScreen() {
                     .padding(dimen16)
                     .clickable {
                         coroutineScope.launch {
-                            scrollState.animateScrollTo(scrollToPosition.roundToInt())
+                            scrollState.scrollTo(scrollToPosition.roundToInt())
                         }
                     }
             )
@@ -53,4 +54,10 @@ fun NewsScreen() {
             Text(text = "Post item $it")
         }
     }
+}
+
+@Preview
+@Composable
+private fun NewsScreenPreview() {
+    NewsScreen()
 }
