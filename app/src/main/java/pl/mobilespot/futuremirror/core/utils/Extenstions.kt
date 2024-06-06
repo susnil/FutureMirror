@@ -1,4 +1,4 @@
-package pl.mobilespot.futuremirror.core
+package pl.mobilespot.futuremirror.core.utils
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator

@@ -14,6 +14,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import pl.mobilespot.futuremirror.core.utils.noOp
+import pl.mobilespot.futuremirror.core.utils.noOpSingleArg
 import pl.mobilespot.futuremirror.designsystem.ui.padding
 import pl.mobilespot.futuremirror.designsystem.ui.theme.FutureMirrorTheme
 import pl.mobilespot.futuremirror.presentation.DailyCard
@@ -92,8 +94,8 @@ private fun DashboardScreenPreview() {
     FutureMirrorTheme {
         DashboardScreen(
             DashboardState.raw,
-            {},
-            {},
+            noOpSingleArg,
+            noOp,
             (1..31).toList().map { DashboardDay(it, false) },
             1)
     }
