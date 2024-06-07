@@ -20,6 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import pl.mobilespot.futuremirror.R
+import pl.mobilespot.futuremirror.core.utils.noOpSingleArg
 import pl.mobilespot.futuremirror.designsystem.ui.theme.FutureMirrorTheme
 import pl.mobilespot.futuremirror.designsystem.ui.theme.dimen10
 import pl.mobilespot.futuremirror.designsystem.ui.theme.dimen20
@@ -70,6 +71,6 @@ fun BottomNavigationPreview() {
             BottomNavigationItem(icon = R.drawable.ic_dashboard, label = R.string.dashboard),
             BottomNavigationItem(icon = R.drawable.ic_search, label = R.string.search),
             BottomNavigationItem(icon = R.drawable.ic_newspaper, label = R.string.news),
-        ), selectedItem = 0, onItemClick = {})
+        ), selectedItem = 0, onItemClick = noOpSingleArg)
     }
 }

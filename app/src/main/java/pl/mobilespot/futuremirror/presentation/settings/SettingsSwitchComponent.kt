@@ -25,6 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import pl.mobilespot.futuremirror.R
+import pl.mobilespot.futuremirror.core.utils.noOp
 import pl.mobilespot.futuremirror.designsystem.ui.padding
 import pl.mobilespot.futuremirror.designsystem.ui.theme.dimen24
 
@@ -81,6 +82,6 @@ fun SettingsSwitchComponentPreview() {
         icon = R.drawable.ic_icon,
         iconDesc = R.string.icon_description,
         state = false,
-        onClick = {}
+        onClick = noOp
     )
 }

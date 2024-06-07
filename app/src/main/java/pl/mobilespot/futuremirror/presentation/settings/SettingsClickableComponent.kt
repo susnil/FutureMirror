@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import pl.mobilespot.futuremirror.R
+import pl.mobilespot.futuremirror.core.utils.noOp
 import pl.mobilespot.futuremirror.designsystem.ui.padding
 import pl.mobilespot.futuremirror.designsystem.ui.theme.dimen24
 
@@ -88,6 +89,6 @@ fun SettingsClickableComponentPreview() {
         name = R.string.title,
         icon = R.drawable.ic_icon,
         iconDesc = R.string.icon_description,
-        onClick = {}
+        onClick = noOp
     )
 }
