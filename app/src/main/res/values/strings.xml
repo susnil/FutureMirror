@@ -10,4 +10,5 @@
     <string name="news">news</string>
     <string name="menu_news">@string/news</string>
     <string name="settings_show_past_days">Show past days</string>
+    <string name="unselect">Unselect</string>
 </resources>

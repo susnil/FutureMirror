@@ -3,17 +3,25 @@ package pl.mobilespot.futuremirror.presentation.dashboard
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DisabledByDefault
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import pl.mobilespot.futuremirror.R
 import pl.mobilespot.futuremirror.core.utils.noOp
 import pl.mobilespot.futuremirror.core.utils.noOpSingleArg
 import pl.mobilespot.futuremirror.designsystem.ui.padding
@@ -62,10 +70,12 @@ fun DashboardScreen(
                 }
             }
         }
-
+    }
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.CenterEnd) {
         uiState.selectedDay?.let {
-            Button(onClick = { unselected() }) {
-                Text(text = "Unselect")
+            ExtendedFloatingActionButton(onClick = { unselected() }) {
+                Icon(Icons.Filled.DisabledByDefault, stringResource(id = R.string.unselect))
+                Text(text = stringResource(id = R.string.unselect))
             }
         }
     }
@@ -97,6 +107,7 @@ private fun DashboardScreenPreview() {
             noOpSingleArg,
             noOp,
             (1..31).toList().map { DashboardDay(it, false) },
-            1)
+            1
+        )
     }
 }
