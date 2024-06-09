@@ -4,11 +4,14 @@
 
 The app can show the viewer different kinds of information in the form of widgets, such as calendar, name days and news updates.
 
-Firstly, choose your language and read the instructions
+Firstly, choose your language.
+
 `Choose your language`
 
-[EN](https://github.com/susnil/FutureMirror/blob/master/doc/README.en.md) 
-[PL](https://github.com/susnil/FutureMirror/blob/master/doc/README.pl.md) 
+[ENGLISH](https://github.com/susnil/FutureMirror/blob/master/doc/README.en.md) 
+[POLISH](https://github.com/susnil/FutureMirror/blob/master/doc/README.pl.md) 
+
+There are instructions on how to get started, and you will see a demo of the app in the screenshots.
 
 ## How to build
 
