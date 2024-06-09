@@ -14,8 +14,8 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
-import pl.mobilespot.futuremirror.namedays.GetSavedNameDays
-import pl.mobilespot.futuremirror.namedays.SearchResult
+import pl.mobilespot.futuremirror.namedays.usecase.GetSavedNameDays
+import pl.mobilespot.futuremirror.namedays.local.data.SearchResult
 import timber.log.Timber
 import javax.inject.Inject
 

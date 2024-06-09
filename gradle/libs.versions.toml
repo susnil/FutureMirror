@@ -1,5 +1,6 @@
 [versions]
 agp = "8.3.0"
+coilCompose = "2.6.0"
 hiltAndroid = "2.51"
 kotlin = "1.9.0"
 coreKtx = "1.12.0"
@@ -11,6 +12,7 @@ activityCompose = "1.8.2"
 composeBom = "2024.02.01"
 mockkAgent = "1.13.10"
 mockkAndroid = "1.13.10"
+pagingRuntime = "3.3.0"
 timber = "5.0.1"
 androidxHiltNavigationCompose = "1.2.0"
 androidxLifecycle = "2.7.0"
@@ -19,6 +21,8 @@ androidxDataStore = "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pagingRuntime" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }

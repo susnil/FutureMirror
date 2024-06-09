@@ -1,4 +1,4 @@
-package pl.mobilespot.futuremirror.namedays
+package pl.mobilespot.futuremirror.namedays.local.data
 
 import android.os.Parcelable
 import androidx.room.Entity

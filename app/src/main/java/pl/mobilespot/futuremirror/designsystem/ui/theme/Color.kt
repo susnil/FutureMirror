@@ -11,3 +11,7 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val DarkRed = Color(0xFFAA0000)
+
+
+val Body = Color(0xFF4E4B66)
+val Title = Color(0xFF000000)

@@ -1,9 +1,12 @@
-package pl.mobilespot.futuremirror.namedays
+package pl.mobilespot.futuremirror.namedays.usecase
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
-import pl.mobilespot.futuremirror.data.NameDayDao
+import pl.mobilespot.futuremirror.namedays.local.NameDayDao
+import pl.mobilespot.futuremirror.namedays.local.data.NameDay
+import pl.mobilespot.futuremirror.namedays.repository.NameDaysRepository
+import pl.mobilespot.futuremirror.namedays.local.data.SearchResult
 import javax.inject.Inject
 
 class GetSavedNameDays @Inject constructor(

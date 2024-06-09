@@ -3,8 +3,8 @@ package pl.mobilespot.futuremirror.presentation.dashboard
 import androidx.lifecycle.SavedStateHandle
 import org.junit.Before
 import org.junit.Test
-import pl.mobilespot.futuremirror.namedays.NameDaysDataSource
-import pl.mobilespot.futuremirror.namedays.NameDaysRepository
+import pl.mobilespot.futuremirror.namedays.local.NameDaysDataSource
+import pl.mobilespot.futuremirror.namedays.repository.NameDaysRepository
 
 class DashboardViewModelTest {
 

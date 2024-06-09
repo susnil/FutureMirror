@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import pl.mobilespot.futuremirror.datastore.UserPreferences
 import pl.mobilespot.futuremirror.datastore.UserPreferencesRepository
-import pl.mobilespot.futuremirror.namedays.GetSavedNameDays
+import pl.mobilespot.futuremirror.namedays.usecase.GetSavedNameDays
 import javax.inject.Inject
 
 @HiltViewModel

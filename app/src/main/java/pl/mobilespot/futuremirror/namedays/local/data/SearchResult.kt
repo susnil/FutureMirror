@@ -1,4 +1,4 @@
-package pl.mobilespot.futuremirror.namedays
+package pl.mobilespot.futuremirror.namedays.local.data
 
 data class SearchResult(
     val names: List<NameDay> = emptyList()

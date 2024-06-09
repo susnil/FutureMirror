@@ -11,9 +11,9 @@ import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
-import pl.mobilespot.futuremirror.data.FMDatabase
-import pl.mobilespot.futuremirror.data.NameDayDao
-import pl.mobilespot.futuremirror.namedays.NameDay
+import pl.mobilespot.futuremirror.core.data.FMDatabase
+import pl.mobilespot.futuremirror.namedays.local.NameDayDao
+import pl.mobilespot.futuremirror.namedays.local.data.NameDay
 
 @RunWith(AndroidJUnit4::class)
 class FMDatabaseTest {

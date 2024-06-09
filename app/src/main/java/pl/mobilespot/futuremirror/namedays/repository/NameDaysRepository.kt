@@ -1,6 +1,10 @@
-package pl.mobilespot.futuremirror.namedays
+package pl.mobilespot.futuremirror.namedays.repository
 
-import pl.mobilespot.futuremirror.data.NameDayDao
+import pl.mobilespot.futuremirror.namedays.local.NameDayDao
+import pl.mobilespot.futuremirror.namedays.local.data.DayMonth
+import pl.mobilespot.futuremirror.namedays.local.data.NameDay
+import pl.mobilespot.futuremirror.namedays.local.data.SearchResult
+import pl.mobilespot.futuremirror.namedays.local.LocalDataSource
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton

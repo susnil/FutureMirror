@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import pl.mobilespot.futuremirror.datastore.UserPreferences
 import pl.mobilespot.futuremirror.datastore.UserPreferencesRepository
-import pl.mobilespot.futuremirror.namedays.DayMonth
-import pl.mobilespot.futuremirror.namedays.NameDaysRepository
+import pl.mobilespot.futuremirror.namedays.local.data.DayMonth
+import pl.mobilespot.futuremirror.namedays.repository.NameDaysRepository
 import timber.log.Timber
 import java.time.LocalDate
 import javax.inject.Inject

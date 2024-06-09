@@ -1,5 +1,6 @@
-package pl.mobilespot.futuremirror.namedays
+package pl.mobilespot.futuremirror.namedays.local
 
+import pl.mobilespot.futuremirror.namedays.local.data.DayMonth
 import javax.inject.Inject
 
 class NameDaysDataSource @Inject constructor() : LocalDataSource {

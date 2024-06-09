@@ -4,6 +4,7 @@
 
 The app can show the viewer different kinds of information in the form of widgets, such as calendar, name days and news updates.
 
+Firstly, choose your language and read the instructions
 `Choose your language`
 
 [EN](https://github.com/susnil/FutureMirror/blob/master/doc/README.en.md) 
@@ -20,13 +21,15 @@ The app can show the viewer different kinds of information in the form of widget
 3. [x] Name days in Poland
 4. [x] Monthly agenda of name days
 5. [x] Find name days
-6. [ ] Find news/weather api
-7. [ ] Check how PagingData is working
+6. [x] Find news api
+7. [x] Check how PagingData is working
 8. [x] Add junit tests for use cases, viewmodel tests
-9. [ ] Add draggable element
-10. [ ] Dashboard personalization
-11. [x] Use datastore for user settings
-12. [ ] Import name days when user first time open the app
+9. [x] Dashboard personalization
+10. [x] Use datastore for user settings
+
+## Future ideas
+1. [ ] Add draggable element
+2. [ ] Adapt name days strategy for update data structures without lose data from the app. The roadmap's strategy: [database.adoc](https://github.com/susnil/FutureMirror/blob/master/adr/database.adoc)
 
 ## Technology stack
 
@@ -45,15 +48,15 @@ The app can show the viewer different kinds of information in the form of widget
   single value. For example, you can use a flow to receive live updates from a database.
 - [x] [Timber](https://github.com/JakeWharton/timber) - A logger with a small, extensible API which
   provides utility on top of Android's normal Log class.
-- [ ] [Kotlin Coroutines](https://developer.android.com/kotlin/coroutines) - A concurrency design
+- [x] [Kotlin Coroutines](https://developer.android.com/kotlin/coroutines) - A concurrency design
   pattern that you can use on Android to simplify code that executes asynchronously.
 - [x] [Material Design 3](https://m3.material.io/develop/android/mdc-android) - Modular and
   customizable Material Design UI components for Android
-- [ ] [Retrofit](https://square.github.io/retrofit/) - Retrofit is a REST Client for Java and
+- [x] [Retrofit](https://square.github.io/retrofit/) - Retrofit is a REST Client for Java and
   Android by Square inc under Apache 2.0 license. Its a simple network library that used for network
   transactions. By using this library we can seamlessly capture JSON response from web service/web
   API.
-- [ ] [Paging](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) - The
+- [x] [Paging](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) - The
   Paging library helps you load and display pages of data from a larger dataset from local storage
   or over network. This approach allows your app to use both network bandwidth and system resources
   more efficiently.

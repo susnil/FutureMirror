@@ -88,6 +88,14 @@ dependencies {
     implementation(libs.androidx.dataStore.core)
     implementation("com.google.protobuf:protobuf-javalite:3.18.0")
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    implementation(libs.coil.compose)
+    implementation(libs.androidx.paging.runtime)
+    implementation("androidx.paging:paging-compose:3.3.0")
+
+    //Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }
 kapt {
     correctErrorTypes = true

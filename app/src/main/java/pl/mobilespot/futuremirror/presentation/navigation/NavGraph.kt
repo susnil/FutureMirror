@@ -16,6 +16,7 @@ import pl.mobilespot.futuremirror.R
 import pl.mobilespot.futuremirror.designsystem.ui.padding
 import pl.mobilespot.futuremirror.presentation.dashboard.DashboardRoute
 import pl.mobilespot.futuremirror.presentation.days.DayDetailsScreen
+import pl.mobilespot.futuremirror.presentation.news.NewsRoute
 import pl.mobilespot.futuremirror.presentation.news.NewsScreen
 import pl.mobilespot.futuremirror.presentation.search.SearchRoute
 import pl.mobilespot.futuremirror.presentation.settings.SettingsRoute
@@ -72,7 +73,7 @@ fun NavGraph() {
                     DayDetailsScreen()
                 }
                 composable(route = Route.NewsScreen.route) { _ ->
-                    NewsScreen()
+                    NewsRoute()
                 }
                 composable(route = Route.Settings.route) { _ ->
                     SettingsRoute()

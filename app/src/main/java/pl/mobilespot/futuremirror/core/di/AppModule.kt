@@ -15,13 +15,19 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import pl.mobilespot.futuremirror.data.FMDatabase
-import pl.mobilespot.futuremirror.data.NameDayDao
-import pl.mobilespot.futuremirror.namedays.LocalDataSource
-import pl.mobilespot.futuremirror.namedays.NameDay
-import pl.mobilespot.futuremirror.namedays.NameDaysDataSource
-import pl.mobilespot.futuremirror.namedays.NameDaysRepository
-import pl.mobilespot.futuremirror.namedays.Repository
+import pl.mobilespot.futuremirror.core.utils.Constants.BASE_URL
+import pl.mobilespot.futuremirror.core.data.FMDatabase
+import pl.mobilespot.futuremirror.namedays.local.NameDayDao
+import pl.mobilespot.futuremirror.namedays.local.LocalDataSource
+import pl.mobilespot.futuremirror.namedays.local.data.NameDay
+import pl.mobilespot.futuremirror.namedays.local.NameDaysDataSource
+import pl.mobilespot.futuremirror.namedays.repository.NameDaysRepository
+import pl.mobilespot.futuremirror.namedays.repository.Repository
+import pl.mobilespot.futuremirror.news.remote.NewsApi
+import pl.mobilespot.futuremirror.news.repository.NewsRepository
+import pl.mobilespot.futuremirror.news.repository.NewsRepositoryImpl
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 import javax.inject.Provider
 import javax.inject.Singleton
@@ -69,6 +75,17 @@ object AppModule {
     fun provideLogDao(
         logFMDatabase: FMDatabase
     ): NameDayDao = logFMDatabase.nameDayDao()
+
+    @Provides
+    @Singleton
+    fun provideApiInstance(): NewsApi {
+        return Retrofit
+            .Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(NewsApi::class.java)
+    }
 }
 
 class AppDatabaseCallback(private val provider: Provider<NameDayDao>) :
@@ -110,4 +127,14 @@ class AppDatabaseCallback(private val provider: Provider<NameDayDao>) :
             provider.insert(nameDay)
         }
     }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class NewsRepositoryModule {
+
+    @Binds
+    @Singleton
+    abstract fun bindNewsRepository(newsRepositoryImpl: NewsRepositoryImpl): NewsRepository
+
 }

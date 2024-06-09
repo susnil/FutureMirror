@@ -4,6 +4,10 @@ import io.mockk.every
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
+import pl.mobilespot.futuremirror.namedays.local.LocalDataSource
+import pl.mobilespot.futuremirror.namedays.local.NameDaysDataSource
+import pl.mobilespot.futuremirror.namedays.local.data.DayMonth
+import pl.mobilespot.futuremirror.namedays.repository.NameDaysRepository
 
 class NameDaysRepositoryTest {
     @Test

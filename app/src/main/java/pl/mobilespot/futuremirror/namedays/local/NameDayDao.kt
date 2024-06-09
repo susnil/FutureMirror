@@ -1,10 +1,10 @@
-package pl.mobilespot.futuremirror.data
+package pl.mobilespot.futuremirror.namedays.local
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
-import pl.mobilespot.futuremirror.namedays.NameDay
+import pl.mobilespot.futuremirror.namedays.local.data.NameDay
 
 @Dao
 interface NameDayDao {
