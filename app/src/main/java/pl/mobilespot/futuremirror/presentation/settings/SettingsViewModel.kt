@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import pl.mobilespot.futuremirror.datastore.UserPreferences
@@ -28,8 +27,9 @@ class SettingsViewModel @Inject constructor(
             null,
         )
 
-    private val _uiState: MutableStateFlow<SettingsState> = MutableStateFlow(SettingsState.raw)
-    var uiState = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(SettingsState.raw)
+    val uiState: StateFlow<SettingsState> get() = _uiState
+
     fun getAllNames(): Flow<Int> =
         getSavedNameDays.getDayNamesCount()
 
